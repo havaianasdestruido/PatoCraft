@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:padding="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="18.0sp" android:id="@id/friendfinder_phone_invite_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="12.0dp" android:singleLine="true" android:includeFontPadding="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true" style="@style/SUI_white" />
+    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="16.0sp" android:id="@id/friendfinder_phone_invite_checkbox" android:layout_marginLeft="12.0dp" android:layout_marginRight="12.0dp" android:text="@string/ic_Accept" android:includeFontPadding="false" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/xbox_symbol" />
+    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:id="@id/friendfinder_phone_invite_name_onxbox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/FriendFinder_PhoneInviteFriends_On_Xbox" android:singleLine="true" android:includeFontPadding="true" android:layout_toLeftOf="@id/friendfinder_phone_invite_checkbox" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" style="@style/SUI_white" />
+</RelativeLayout>

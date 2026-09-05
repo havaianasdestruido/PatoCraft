@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="xbid_ban_error_header_android">Dobrý den, %1$s,</string>
+    <string name="xbid_ban_error_body_android">Nemůžeme vás přihlásit, protože přístup ke službě Xbox Live z vašeho účtu byl zablokován.</string>
+    <string name="xbid_creation_error_android">Bohužel jsme nemohli dokončit váš profil Xbox. Pokud se to bude opakovat, zkuste ho nastavit na webu &lt;u>Xbox.com&lt;/u>.</string>
+    <string name="xbid_catchall_error_android">Bohužel došlo k chybě. Zkuste to ještě jednou nebo to zkuste na webu &lt;u>Xbox.com&lt;/u>.</string>
+    <string name="xbid_error_offline_android">Zkontrolujte, zda jste připojeni k internetu, a zkuste to znovu. Momentálně se nelze připojit.</string>
+    <string name="xbid_close">Zavřít</string>
+    <string name="xbid_try_again">Zkusit znovu</string>
+    <string name="xbid_more_info">Další informace</string>
+    <string name="xbid_sign_up_header">Vítá vás Xbox</string>
+    <string name="xbid_sign_up_subheader_android">Toto je vaše jméno na Xboxu (neboli \"jmenovka hráče\"). Jestli chcete, můžete ho změnit.</string>
+    <string name="xbid_gamertag_placeholder">Jmenovka hráče</string>
+    <string name="xbid_privacy_settings_header_android">Nastavení ochrany osobních údajů: %1$s</string>
+    <string name="xbid_age_group_adult">Výchozí hodnota pro dospělého</string>
+    <string name="xbid_age_group_teen">Výchozí hodnota pro teenagera</string>
+    <string name="xbid_age_group_child">Výchozí hodnota pro dítě</string>
+    <string name="xbid_age_group_adult_details_android">Vaši spoluhráči vidí, jestli jste online. Vidí také vaše herní klipy a nedávné aplikace a hry. Toto nastavení můžete změnit na webu &lt;u>Xbox.com&lt;/u>.</string>
+    <string name="xbid_age_group_teen_details_android">Vaši spoluhráči ve službě Xbox vidí vaše skutečné jméno a profil. Vidí také, jestli jste online, vaše herní klipy a nedávné aplikace a hry.</string>
+    <string name="xbid_age_group_child_details_android">Spoluhráči ve službě Xbox vidí váš profil, ale ne vaše skutečné jméno. Spoluhráči vidí, jestli jste online a můžete hrát, ale k přidání spoluhráčů potřebujete dovolení rodiče.</string>
+    <string name="xbid_next">Další</string>
+    <string name="xbid_claim_it">Zabrat ji!</string>
+    <string name="xbid_another_gamertag">Už máte jmenovku hráče?</string>
+    <string name="xbid_another_sign_in">Přihlásit se pomocí jiného účtu Microsoft</string>
+    <string name="xbid_gamertag_check_availability">Zjistit dostupnost</string>
+    <string name="xbid_gamertag_not_available_android">Tato jmenovka je zabraná. Co třeba tato:</string>
+    <string name="xbid_gamertag_checking_android">Probíhá kontrola…</string>
+    <string name="xbid_gamertag_available">Volná!</string>
+    <string name="xbid_gamertag_checking_error">Došlo k chybě. Zkusit znovu?</string>
+    <string name="xbid_welcome_back">Vítejte zpátky!</string>
+    <string name="xbid_customize_profile">Profil si můžete upravit v aplikaci Xbox.</string>
+    <string name="xbid_lets_play_android">Jdeme hrát!</string>
+    <string name="xbid_different_gamer_tag_answer">Přepnout účty</string>
+    <string name="xbid_introducing_android">Představujeme vám…</string>
+    <string name="xbid_gamertag_not_available_no_suggestions_android">Tato jmenovka je zabraná.</string>
+    <string name="xbid_first_and_last_name_android">%1$s %2$s</string>
+    <string name="xbid_friend_finder_opt_in">Najít přátele</string>
+    <string name="xbid_voice_over_game_score_label_text">Skóre hráče</string>
+    <string name="xbid_voice_over_close_button_text">Zavřít</string>
+    <string name="xbid_gamerpic_choose_your_gamerpic">Zvolte si obrázek hráče.</string>
+    <string name="xbid_start_broadcasting">Zahájit přenášení</string>
+</resources>

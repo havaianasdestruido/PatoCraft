@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Thêm tài khoản</string>
+    <string name="account_picker_list_body">Bạn muốn đăng nhập vào ứng dụng này với tài khoản nào?</string>
+    <string name="account_picker_list_header">Chọn một</string>
+    <string name="account_picker_menu_dismiss">Đóng</string>
+    <string name="account_setting_up">Vui lòng chờ khi chúng tôi hoàn tất việc thêm tài khoản của bạn.</string>
+    <string name="account_setting_up_header">Bạn gần như đã hoàn thành</string>
+    <string name="app_market">vi</string>
+    <string name="authentication_button_finish">kết thúc</string>
+    <string name="authentication_button_next">tiếp</string>
+    <string name="authentication_button_previous">trước</string>
+    <string name="error_body_generic_failure">Vui lòng thử lại.</string>
+    <string name="error_header_generic_failure">Đã xảy ra sự cố</string>
+    <string name="error_header_server_network_error">Chúng tôi đang gặp sự cố kết nối tới máy chủ</string>
+    <string name="error_overlay_no_network">Bạn không kết nối internet</string>
+    <string name="sign_out_dialog_button_cancel">Hủy</string>
+    <string name="sign_out_dialog_button_sign_out">Đăng xuất</string>
+    <string name="sign_out_dialog_checkbox">Đăng xuất khỏi tất cả các ứng dụng Microsoft bằng %1$s</string>
+    <string name="sign_out_dialog_title">Bạn có muốn đăng xuất khỏi ứng dụng này?</string>
+    <string name="user_tile_image_content_description">Hình ảnh người dùng.</string>
+    <string name="webflow_header">Tài khoản Microsoft</string>
+</resources>

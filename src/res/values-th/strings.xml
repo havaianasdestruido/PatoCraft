@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">เพิ่มบัญชี</string>
+    <string name="account_picker_list_body">คุณต้องการลงชื่อเข้าใช้แอปนี้ด้วยบัญชีใด</string>
+    <string name="account_picker_list_header">เลือกบัญชี</string>
+    <string name="account_picker_menu_dismiss">ปิด</string>
+    <string name="account_setting_up">โปรดรอขณะที่เรากำลังเพิ่มบัญชีของคุณให้เสร็จสมบูรณ์</string>
+    <string name="account_setting_up_header">เกือบเสร็จสิ้นแล้ว</string>
+    <string name="app_market">th</string>
+    <string name="authentication_button_finish">เสร็จสิ้น</string>
+    <string name="authentication_button_next">ถัดไป</string>
+    <string name="authentication_button_previous">ก่อนหน้านี้</string>
+    <string name="error_body_generic_failure">โปรดลองอีกครั้ง</string>
+    <string name="error_header_generic_failure">มีสิ่งผิดปกติเกิดขึ้น</string>
+    <string name="error_header_server_network_error">เรากำลังมีปัญหาในการเชื่อมต่อกับเซิร์ฟเวอร์</string>
+    <string name="error_overlay_no_network">คุณไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
+    <string name="sign_out_dialog_button_cancel">ยกเลิก</string>
+    <string name="sign_out_dialog_button_sign_out">ลงชื่อออก</string>
+    <string name="sign_out_dialog_checkbox">ลงชื่อออกจากแอป Microsoft ทั้งหมดโดยใช้ %1$s</string>
+    <string name="sign_out_dialog_title">คุณต้องการลงชื่อออกจากแอปนี้หรือไม่</string>
+    <string name="user_tile_image_content_description">ภาพของผู้ใช้</string>
+    <string name="webflow_header">บัญชี Microsoft</string>
+</resources>

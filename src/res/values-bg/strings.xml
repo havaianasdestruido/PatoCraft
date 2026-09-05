@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Добавяне на акаунт</string>
+    <string name="account_picker_list_body">С кой акаунт искате да влезете в това приложение?</string>
+    <string name="account_picker_list_header">Изберете едно</string>
+    <string name="account_picker_menu_dismiss">Затваряне</string>
+    <string name="account_setting_up">Изчакайте, докато завършим добавянето на вашия акаунт.</string>
+    <string name="account_setting_up_header">Почти е готово</string>
+    <string name="app_market">bg</string>
+    <string name="authentication_button_finish">готово</string>
+    <string name="authentication_button_next">напред</string>
+    <string name="authentication_button_previous">назад</string>
+    <string name="error_body_generic_failure">Опитайте отново.</string>
+    <string name="error_header_generic_failure">Възникна грешка</string>
+    <string name="error_header_server_network_error">Имаме проблеми с връзката към сървъра</string>
+    <string name="error_overlay_no_network">Нямате връзка с интернет</string>
+    <string name="sign_out_dialog_button_cancel">Отказ</string>
+    <string name="sign_out_dialog_button_sign_out">Излизане</string>
+    <string name="sign_out_dialog_checkbox">Излез от всички приложения на Microsoft, използващи %1$s</string>
+    <string name="sign_out_dialog_title">Искате ли да излезете от това приложение?</string>
+    <string name="user_tile_image_content_description">Изображението на потребителя.</string>
+    <string name="webflow_header">Акаунт в Microsoft</string>
+</resources>

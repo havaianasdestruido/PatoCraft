@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Přidat účet</string>
+    <string name="account_picker_list_body">Se kterým účtem se chcete přihlásit k této aplikaci?</string>
+    <string name="account_picker_list_header">Zvolte účet</string>
+    <string name="account_picker_menu_dismiss">Zavřít</string>
+    <string name="account_setting_up">Počkejte prosím, než dokončíme přidávání vašeho účtu.</string>
+    <string name="account_setting_up_header">Už je to skoro hotové</string>
+    <string name="app_market">cs</string>
+    <string name="authentication_button_finish">dokončit</string>
+    <string name="authentication_button_next">další</string>
+    <string name="authentication_button_previous">předchozí</string>
+    <string name="error_body_generic_failure">Zkuste to znovu.</string>
+    <string name="error_header_generic_failure">Něco se stalo.</string>
+    <string name="error_header_server_network_error">Máme problémy s připojením k serveru</string>
+    <string name="error_overlay_no_network">Nemáte internetové připojení.</string>
+    <string name="sign_out_dialog_button_cancel">Storno</string>
+    <string name="sign_out_dialog_button_sign_out">Odhlásit se</string>
+    <string name="sign_out_dialog_checkbox">Odhlásit se ze všech aplikací Microsoft přes %1$s</string>
+    <string name="sign_out_dialog_title">Chcete se odhlásit z této aplikace?</string>
+    <string name="user_tile_image_content_description">Obrázek uživatele.</string>
+    <string name="webflow_header">Účet Microsoft</string>
+</resources>

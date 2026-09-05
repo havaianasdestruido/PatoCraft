@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Magdagdag ng account</string>
+    <string name="account_picker_list_body">Aling account ang gusto mong mag-sign in para sa app na ito?</string>
+    <string name="account_picker_list_header">Pumili ng isa</string>
+    <string name="account_picker_menu_dismiss">Isara</string>
+    <string name="account_setting_up">Mangyaring maghintay habang tinatapos namin ang pagdagdag ng iyong account.</string>
+    <string name="account_setting_up_header">Halos tapos ka na</string>
+    <string name="app_market">fil-ph</string>
+    <string name="authentication_button_finish">tapos na</string>
+    <string name="authentication_button_next">susunod</string>
+    <string name="authentication_button_previous">nakaraan</string>
+    <string name="error_body_generic_failure">Pakisubukan muli.</string>
+    <string name="error_header_generic_failure">May nangyaring hindi tama</string>
+    <string name="error_header_server_network_error">Nagkakaroon kami ng mga problema sa pagkonekta sa server</string>
+    <string name="error_overlay_no_network">Wala kang koneksyon sa internet</string>
+    <string name="sign_out_dialog_button_cancel">Kanselahin</string>
+    <string name="sign_out_dialog_button_sign_out">Mag-sign out</string>
+    <string name="sign_out_dialog_checkbox">Mag-sign out sa lahat ng app ng Microsoft gamit ang %1$s</string>
+    <string name="sign_out_dialog_title">Gusto mo bang mag-sign out sa app na ito?</string>
+    <string name="user_tile_image_content_description">Ang imahe ng user.</string>
+    <string name="webflow_header">Account sa Microsoft</string>
+</resources>

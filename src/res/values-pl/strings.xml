@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Dodaj konto</string>
+    <string name="account_picker_list_body">Którego konta chcesz użyć do zalogowania się w tej aplikacji?</string>
+    <string name="account_picker_list_header">Wybierz jedno</string>
+    <string name="account_picker_menu_dismiss">Zamknij</string>
+    <string name="account_setting_up">Czekaj, kończymy dodawanie Twojego konta.</string>
+    <string name="account_setting_up_header">Prawie gotowe</string>
+    <string name="app_market">pl</string>
+    <string name="authentication_button_finish">zakończ</string>
+    <string name="authentication_button_next">dalej</string>
+    <string name="authentication_button_previous">wstecz</string>
+    <string name="error_body_generic_failure">Spróbuj ponownie.</string>
+    <string name="error_header_generic_failure">Wystąpił problem</string>
+    <string name="error_header_server_network_error">Mamy problemy z połączeniem z serwerem</string>
+    <string name="error_overlay_no_network">Brak połączenia z Internetem</string>
+    <string name="sign_out_dialog_button_cancel">Anuluj</string>
+    <string name="sign_out_dialog_button_sign_out">Wyloguj</string>
+    <string name="sign_out_dialog_checkbox">Wyloguj się ze wszystkich aplikacji firmy Microsoft za pomocą %1$s</string>
+    <string name="sign_out_dialog_title">Czy chcesz się wylogować z tej aplikacji?</string>
+    <string name="user_tile_image_content_description">Obraz użytkownika.</string>
+    <string name="webflow_header">Konto Microsoft</string>
+</resources>

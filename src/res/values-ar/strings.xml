@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">إضافة حساب</string>
+    <string name="account_picker_list_body">ما الحساب الذي تريد استخدامه عند تسجيل الدخول إلى هذا التطبيق؟</string>
+    <string name="account_picker_list_header">اختر حساباً</string>
+    <string name="account_picker_menu_dismiss">إغلاق</string>
+    <string name="account_setting_up">برجاء الانتظار حتى ننتهي من إضافة حسابك.</string>
+    <string name="account_setting_up_header">أوشكت على الانتهاء</string>
+    <string name="app_market">ar</string>
+    <string name="authentication_button_finish">إنهاء</string>
+    <string name="authentication_button_next">التالي</string>
+    <string name="authentication_button_previous">السابق</string>
+    <string name="error_body_generic_failure">الرجاء المحاولة مرة أخرى.</string>
+    <string name="error_header_generic_failure">حدث خطأ ما</string>
+    <string name="error_header_server_network_error">نواجه مشاكل في الاتصال بالخادم</string>
+    <string name="error_overlay_no_network">لا يتوفر لديك اتصال بالإنترنت</string>
+    <string name="sign_out_dialog_button_cancel">إلغاء الأمر</string>
+    <string name="sign_out_dialog_button_sign_out">تسجيل الخروج</string>
+    <string name="sign_out_dialog_checkbox">تسجيل الخروج من كافة تطبيقات Microsoft باستخدام %1$s</string>
+    <string name="sign_out_dialog_title">هل تريد تسجيل الخروج من هذا التطبيق؟</string>
+    <string name="user_tile_image_content_description">صورة المستخدم</string>
+    <string name="webflow_header">حساب Microsoft</string>
+</resources>

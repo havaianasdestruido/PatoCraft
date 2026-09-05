@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:padding="12.0dp" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.microsoft.xbox.toolkit.ui.SwitchPanel android:id="@id/friend_finder_confirm_switchpanel" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="@dimen/profilePivotPageContentMarginTop" xle:selectedState="0"
+      xmlns:xle="http://schemas.android.com/apk/res-auto">
+        <com.microsoft.xbox.toolkit.ui.SwitchPanelItem android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="match_parent" xle:state="0">
+            <LinearLayout android:layout_gravity="center|top" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="@dimen/friendFinderConfirmDialogTitleSize" android:ellipsize="end" android:id="@id/friend_finder_confirm_message_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24.0dp" android:layout_marginBottom="12.0dp" android:layout_alignParentLeft="true" style="@style/SUI_white" />
+                    <com.microsoft.xbox.toolkit.ui.XLEButton android:gravity="right" android:id="@id/friend_finder_dialog_close" android:background="@drawable/common_button_background" android:padding="8.0dp" android:layout_width="match_parent" android:text="@string/ic_Close" android:layout_alignParentTop="true" android:contentDescription="@string/MessageDialog_Cancel" style="@style/xbox_symbol" />
+                </RelativeLayout>
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12.0dp" android:layout_marginBottom="12.0dp">
+                    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textColor="@color/warningIconColor" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/friend_finder_error_symbol" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dp" android:layout_marginRight="15.0dp" android:text="@string/ic_Warning" android:layout_alignParentLeft="true" style="@style/xbox_symbol" />
+                    <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="@dimen/friendFinderConfirmDialogBodySize" android:ellipsize="end" android:layout_gravity="left" android:id="@id/friend_finder_confirm_message_error" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toRightOf="@id/friend_finder_error_symbol" style="@style/SUI_white" />
+                </RelativeLayout>
+                <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="@dimen/friendFinderConfirmDialogErrorSize" android:ellipsize="end" android:layout_gravity="left" android:id="@id/friend_finder_confirm_message_text" android:layout_width="wrap_content" android:layout_height="0.0dp" android:layout_marginTop="12.0dp" android:layout_marginBottom="12.0dp" android:layout_weight="1.0" style="@style/SUI_white" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dp" android:weightSum="2.0">
+                    <com.microsoft.xbox.toolkit.ui.XLEButton android:gravity="center" android:id="@id/friend_finder_confirm_button" android:background="@color/mediumGray" android:layout_width="0.0dp" android:layout_height="40.0dp" android:layout_marginRight="4.0dp" android:text="" android:layout_weight="1.0" />
+                    <com.microsoft.xbox.toolkit.ui.XLEButton android:gravity="center" android:id="@id/friend_finder_cancel_button" android:background="@color/mediumGray" android:layout_width="0.0dp" android:layout_height="40.0dp" android:text="@string/MessageDialog_Cancel" android:layout_weight="1.0" />
+                </LinearLayout>
+            </LinearLayout>
+            <com.microsoft.xbox.toolkit.ui.FastProgressBar android:layout_gravity="center" android:id="@id/overlay_loading_indicator" android:visibility="gone" android:layout_width="64.0dp" android:layout_height="64.0dp" android:indeterminateOnly="true" android:indeterminateDrawable="@drawable/rotate_loading_rings_small" />
+        </com.microsoft.xbox.toolkit.ui.SwitchPanelItem>
+        <com.microsoft.xbox.toolkit.ui.SwitchPanelItem android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="match_parent" xle:state="1">
+            <com.microsoft.xbox.toolkit.ui.FastProgressBar android:layout_gravity="center" android:layout_width="64.0dp" android:layout_height="64.0dp" android:indeterminateOnly="true" android:indeterminateDrawable="@drawable/rotate_loading_rings_small" />
+        </com.microsoft.xbox.toolkit.ui.SwitchPanelItem>
+    </com.microsoft.xbox.toolkit.ui.SwitchPanel>
+</LinearLayout>

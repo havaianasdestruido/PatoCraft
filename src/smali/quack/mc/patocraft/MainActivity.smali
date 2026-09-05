@@ -1,0 +1,6101 @@
+.class public Lquack/mc/patocraft/MainActivity;
+.super Landroid/app/NativeActivity;
+.source "MainActivity.java"
+
+# interfaces
+.implements Landroid/view/View$OnKeyListener;
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;
+    }
+.end annotation
+
+
+# static fields
+.field public static final ACTION_TCUI_BROADCAST_LAUNCH:Ljava/lang/String; = "com.microsoft.beambroadcast.xle.app.action.TCUI"
+
+.field public static final BROADCAST_TITLE_NAME_KEY:Ljava/lang/String; = "name"
+
+.field public static final MARKET_URL_FORMAT:Ljava/lang/String; = "market://details?id=%s"
+
+.field public static final MINECRAFT_BROADCAST_TITLE:Ljava/lang/String; = "Minecraft"
+
+.field public static final PACKAGE_NAME_KEY:Ljava/lang/String; = "package"
+
+.field public static RESULT_GOOGLEPLAY_PURCHASE:I = 0x0
+
+.field public static RESULT_PICK_IMAGE:I = 0x0
+
+.field private static final STORAGE_PERMISSION_ID:I = 0x1
+
+.field private static _isPowerVr:Z = false
+
+.field private static mHasStoragePermission:Z = false
+
+.field private static final mHockeyAppId:Ljava/lang/String; = "3db796c2fc084bbc907764b7deb378c5"
+
+.field public static mInstance:Lquack/mc/patocraft/MainActivity; = null
+
+.field private static final mixerCreateBetaPackage:Ljava/lang/String; = "com.microsoft.beambroadcast.beta"
+
+.field private static final mixerCreateInternalBetaPackage:Ljava/lang/String; = "com.microsoft.beambroadcast.beta.internal"
+
+.field private static final mixerCreateRetailPackage:Ljava/lang/String; = "com.microsoft.beambroadcast"
+
+
+# instance fields
+.field private final DateFormat:Ljava/text/DateFormat;
+
+.field private _fromOnCreate:Z
+
+.field private _isTouchscreen:Z
+
+.field private _userInputStatus:I
+
+.field private _userInputText:[Ljava/lang/String;
+
+.field private _userInputValues:Ljava/util/ArrayList;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/ArrayList",
+            "<",
+            "Lcom/mojang/android/StringValue;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private _viewDistance:I
+
+.field private clipboardManager:Landroid/content/ClipboardManager;
+
+.field private data:Landroid/os/Bundle;
+
+.field private deviceManager:Lquack/mc/patocraft/input/InputDeviceManager;
+
+.field headsetConnectionReceiver:Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;
+
+.field private initialUserLocale:Ljava/util/Locale;
+
+.field mActivityListeners:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List",
+            "<",
+            "Lquack/mc/patocraft/ActivityListener;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mCallback:J
+
+.field private mDialog:Landroid/app/AlertDialog;
+
+.field private mFileDialogCallback:J
+
+.field mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+.field public mLastPermissionRequestReason:I
+
+.field platform:Lquack/mc/patocraft/platforms/Platform;
+
+.field public preloadingHTML:Ljava/lang/String;
+
+.field textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+.field private textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+.field public virtualKeyboardHeight:I
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 3
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 131
+    const/4 v1, 0x0
+
+    sput-object v1, Lquack/mc/patocraft/MainActivity;->mInstance:Lquack/mc/patocraft/MainActivity;
+
+    .line 143
+    sput-boolean v2, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    .line 671
+    sput-boolean v2, Lquack/mc/patocraft/MainActivity;->_isPowerVr:Z
+
+    .line 1424
+    const/4 v1, 0x1
+
+    sput v1, Lquack/mc/patocraft/MainActivity;->RESULT_PICK_IMAGE:I
+
+    .line 1425
+    const/4 v1, 0x2
+
+    sput v1, Lquack/mc/patocraft/MainActivity;->RESULT_GOOGLEPLAY_PURCHASE:I
+
+    .line 1586
+    :try_start_0
+    const-string v1, "ovrfmod"
+
+    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/UnsatisfiedLinkError; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1591
+    .local v0, "e":Ljava/lang/UnsatisfiedLinkError;
+    :goto_0
+    :try_start_1
+    const-string v1, "ovrplatformloader"
+
+    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+    :try_end_1
+    .catch Ljava/lang/UnsatisfiedLinkError; {:try_start_1 .. :try_end_1} :catch_1
+
+    .line 1596
+    :goto_1
+    const-string v1, "fmod"
+
+    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+
+    .line 1597
+    const-string v1, "minecraftpe"
+
+    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+
+    .line 1598
+    return-void
+
+    .line 1587
+    .end local v0    # "e":Ljava/lang/UnsatisfiedLinkError;
+    :catch_0
+    move-exception v0
+
+    .line 1588
+    .restart local v0    # "e":Ljava/lang/UnsatisfiedLinkError;
+    const-string v1, "MCPE"
+
+    const-string v2, "OVRfmod library not found"
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 1592
+    :catch_1
+    move-exception v0
+
+    .line 1593
+    const-string v1, "MCPE"
+
+    const-string v2, "OVRplatform library not found"
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_1
+.end method
+
+.method public constructor <init>()V
+    .locals 4
+
+    .prologue
+    const-wide/16 v2, 0x0
+
+    const/4 v1, 0x0
+
+    .line 128
+    invoke-direct {p0}, Landroid/app/NativeActivity;-><init>()V
+
+    .line 132
+    iput v1, p0, Lquack/mc/patocraft/MainActivity;->virtualKeyboardHeight:I
+
+    .line 134
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lquack/mc/patocraft/MainActivity;->_isTouchscreen:Z
+
+    .line 135
+    iput-boolean v1, p0, Lquack/mc/patocraft/MainActivity;->_fromOnCreate:Z
+
+    .line 136
+    const/4 v0, 0x2
+
+    iput v0, p0, Lquack/mc/patocraft/MainActivity;->_viewDistance:I
+
+    .line 137
+    iput-wide v2, p0, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    .line 148
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->mActivityListeners:Ljava/util/List;
+
+    .line 1127
+    const/4 v0, -0x1
+
+    iput v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputStatus:I
+
+    .line 1128
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    .line 1129
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputValues:Ljava/util/ArrayList;
+
+    .line 1138
+    new-instance v0, Ljava/text/SimpleDateFormat;
+
+    invoke-direct {v0}, Ljava/text/SimpleDateFormat;-><init>()V
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->DateFormat:Ljava/text/DateFormat;
+
+    .line 1426
+    iput-wide v2, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    .line 1600
+    const-string v0, "<!doctype html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\"><title>Log in</title><meta name=\"description\" content=\"\"><meta name=\"author\" content=\"\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1\"></head><body style=\"padding:0;margin:0;background:linear-gradient(#F9F9F9, #EEEEEE) repeat scroll 0 0 #F9F9F9;\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;\"><tr style=\"height:40px;\"><td style=\"background: #111111;border:1px solid #333;\"><div style=\"margin:0 auto;width:320px;line-height:26px;\"><img style=\"width:120px;height:30px;float:left;margin-right:24px;vertical-align:middle;\" alt=\"\" src=\"data:image/png;base64,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\" /><div style=\"float:left;font-size:16px;font-weight:bold;color:#fff;font-family:Helvetica,Arial,sans-serif;text-shadow:0 -1px 1px #000000;\">Log in</div><div style=\"clear:both;\"></div></div></td></tr><tr style=\"height:235px;\"><td><div style=\"margin:0 auto;width:320px;text-align:center;font-family: Helvetica,Arial,sans-serif;text-shadow: 0 1px 0 #FFFFFF;font-size:24px;font-weight:bold;\">Loading&hellip;</div></td></tr><tr style=\"height:32px;\"><td style=\"background: #111111;border:1px solid #333;\"><div style=\"text-align:center;margin:0 auto;width:320px;line-height:26px;font-size:12px;font-weight:bold;color:#fff;font-family:Helvetica,Arial,sans-serif;text-shadow:0 -1px 1px #000000;\">Mojang &copy; 2013</div></td></tr></table></body></html>"
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->preloadingHTML:Ljava/lang/String;
+
+    return-void
+.end method
+
+.method static synthetic access$100(Lquack/mc/patocraft/MainActivity;)V
+    .locals 0
+    .param p0, "x0"    # Lquack/mc/patocraft/MainActivity;
+
+    .prologue
+    .line 128
+    invoke-direct {p0}, Lquack/mc/patocraft/MainActivity;->onDialogCanceled()V
+
+    return-void
+.end method
+
+.method static synthetic access$200(Lquack/mc/patocraft/MainActivity;)V
+    .locals 0
+    .param p0, "x0"    # Lquack/mc/patocraft/MainActivity;
+
+    .prologue
+    .line 128
+    invoke-direct {p0}, Lquack/mc/patocraft/MainActivity;->onDialogCompleted()V
+
+    return-void
+.end method
+
+.method private static copyAssetDir(Landroid/content/res/AssetManager;Ljava/lang/String;Ljava/lang/String;)V
+    .locals 10
+    .param p0, "am"    # Landroid/content/res/AssetManager;
+    .param p1, "path"    # Ljava/lang/String;
+    .param p2, "outpath"    # Ljava/lang/String;
+
+    .prologue
+    .line 744
+    const-string v5, "MONO"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "EXTRACTING: "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 746
+    :try_start_0
+    invoke-virtual {p0, p1}, Landroid/content/res/AssetManager;->list(Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 747
+    .local v2, "res":[Ljava/lang/String;
+    array-length v6, v2
+
+    const/4 v5, 0x0
+
+    :goto_0
+    if-ge v5, v6, :cond_1
+
+    aget-object v3, v2, v5
+
+    .line 748
+    .local v3, "result":Ljava/lang/String;
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, "/"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 749
+    .local v1, "fromFile":Ljava/lang/String;
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v7, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, "/"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 750
+    .local v4, "toFile":Ljava/lang/String;
+    const-string v7, ".dll"
+
+    invoke-virtual {v1, v7}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result v7
+
+    if-nez v7, :cond_0
+
+    .line 751
+    const-string v7, "MONO"
+
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v9, "\t"
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v9, " is not a dll, skipping"
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-static {v7, v8}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 747
+    :goto_1
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_0
+
+    .line 754
+    :cond_0
+    const-string v7, "MONO"
+
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v9, "\tCOPYING "
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v9, " to "
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-static {v7, v8}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 755
+    invoke-virtual {p0, v1}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
+
+    move-result-object v7
+
+    new-instance v8, Ljava/io/FileOutputStream;
+
+    invoke-direct {v8, v4}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
+
+    invoke-static {v7, v8}, Lquack/mc/patocraft/MainActivity;->copyFile(Ljava/io/InputStream;Ljava/io/OutputStream;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_1
+
+    .line 757
+    .end local v1    # "fromFile":Ljava/lang/String;
+    .end local v2    # "res":[Ljava/lang/String;
+    .end local v3    # "result":Ljava/lang/String;
+    .end local v4    # "toFile":Ljava/lang/String;
+    :catch_0
+    move-exception v0
+
+    .line 758
+    .local v0, "e":Ljava/lang/Exception;
+    const-string v5, "MONO"
+
+    const-string v6, "DLL copy failed: "
+
+    invoke-static {v5, v6, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 760
+    .end local v0    # "e":Ljava/lang/Exception;
+    :cond_1
+    return-void
+.end method
+
+.method private static copyFile(Ljava/io/InputStream;Ljava/io/OutputStream;)V
+    .locals 3
+    .param p0, "in"    # Ljava/io/InputStream;
+    .param p1, "out"    # Ljava/io/OutputStream;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .prologue
+    .line 733
+    const/16 v2, 0x400
+
+    new-array v0, v2, [B
+
+    .line 734
+    .local v0, "buff":[B
+    invoke-virtual {p0, v0}, Ljava/io/InputStream;->read([B)I
+
+    move-result v1
+
+    .line 735
+    .local v1, "len":I
+    :goto_0
+    const/4 v2, -0x1
+
+    if-eq v1, v2, :cond_0
+
+    .line 736
+    const/4 v2, 0x0
+
+    invoke-virtual {p1, v0, v2, v1}, Ljava/io/OutputStream;->write([BII)V
+
+    .line 737
+    invoke-virtual {p0, v0}, Ljava/io/InputStream;->read([B)I
+
+    move-result v1
+
+    goto :goto_0
+
+    .line 739
+    :cond_0
+    invoke-virtual {p0}, Ljava/io/InputStream;->close()V
+
+    .line 740
+    invoke-virtual {p1}, Ljava/io/OutputStream;->close()V
+
+    .line 741
+    return-void
+.end method
+
+.method private createAlertDialog(ZZZ)V
+    .locals 3
+    .param p1, "hasOkButton"    # Z
+    .param p2, "hasCancelButton"    # Z
+    .param p3, "preventBackKey"    # Z
+
+    .prologue
+    .line 646
+    new-instance v0, Landroid/app/AlertDialog$Builder;
+
+    invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+
+    .line 648
+    .local v0, "builder":Landroid/app/AlertDialog$Builder;
+    const-string v1, ""
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+
+    .line 649
+    if-eqz p3, :cond_0
+
+    .line 650
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+
+    .line 652
+    :cond_0
+    new-instance v1, Lquack/mc/patocraft/MainActivity$12;
+
+    invoke-direct {v1, p0}, Lquack/mc/patocraft/MainActivity$12;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setOnCancelListener(Landroid/content/DialogInterface$OnCancelListener;)Landroid/app/AlertDialog$Builder;
+
+    .line 659
+    if-eqz p1, :cond_1
+
+    .line 660
+    const-string v1, "Ok"
+
+    new-instance v2, Lquack/mc/patocraft/MainActivity$13;
+
+    invoke-direct {v2, p0}, Lquack/mc/patocraft/MainActivity$13;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    .line 663
+    :cond_1
+    if-eqz p2, :cond_2
+
+    .line 664
+    const-string v1, "Cancel"
+
+    new-instance v2, Lquack/mc/patocraft/MainActivity$14;
+
+    invoke-direct {v2, p0}, Lquack/mc/patocraft/MainActivity$14;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    .line 667
+    :cond_2
+    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->mDialog:Landroid/app/AlertDialog;
+
+    .line 668
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->mDialog:Landroid/app/AlertDialog;
+
+    invoke-virtual {v1, p0}, Landroid/app/AlertDialog;->setOwnerActivity(Landroid/app/Activity;)V
+
+    .line 669
+    return-void
+.end method
+
+.method private getMixerCreateInstalledPackage()Landroid/content/Intent;
+    .locals 4
+
+    .prologue
+    .line 356
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 358
+    .local v0, "context":Landroid/content/Context;
+    if-eqz v0, :cond_2
+
+    .line 360
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v2
+
+    const-string v3, "com.microsoft.beambroadcast.beta.internal"
+
+    invoke-virtual {v2, v3}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    move-result-object v1
+
+    .line 361
+    .local v1, "intent":Landroid/content/Intent;
+    if-eqz v1, :cond_0
+
+    .line 362
+    const-string v2, "getMixerCreateInstalledPackage"
+
+    const-string v3, "Found internal beta package installed"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 383
+    .end local v1    # "intent":Landroid/content/Intent;
+    :goto_0
+    return-object v1
+
+    .line 366
+    .restart local v1    # "intent":Landroid/content/Intent;
+    :cond_0
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v2
+
+    const-string v3, "com.microsoft.beambroadcast.beta"
+
+    invoke-virtual {v2, v3}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    move-result-object v1
+
+    .line 367
+    if-eqz v1, :cond_1
+
+    .line 368
+    const-string v2, "getMixerCreateInstalledPackage"
+
+    const-string v3, "Found beta package installed"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 373
+    :cond_1
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v2
+
+    const-string v3, "com.microsoft.beambroadcast"
+
+    invoke-virtual {v2, v3}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    move-result-object v1
+
+    .line 374
+    if-eqz v1, :cond_3
+
+    .line 375
+    const-string v2, "getMixerCreateInstalledPackage"
+
+    const-string v3, "Found retail package installed"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 380
+    .end local v1    # "intent":Landroid/content/Intent;
+    :cond_2
+    const-string v2, "getMixerCreateInstalledPackage"
+
+    const-string v3, "Application context is null"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 383
+    :cond_3
+    const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static isPowerVR()Z
+    .locals 1
+
+    .prologue
+    .line 673
+    sget-boolean v0, Lquack/mc/patocraft/MainActivity;->_isPowerVr:Z
+
+    return v0
+.end method
+
+.method private onDialogCanceled()V
+    .locals 1
+
+    .prologue
+    .line 1147
+    const/4 v0, 0x0
+
+    iput v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputStatus:I
+
+    .line 1148
+    return-void
+.end method
+
+.method private onDialogCompleted()V
+    .locals 12
+
+    .prologue
+    const/4 v11, 0x1
+
+    .line 1190
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->_userInputValues:Ljava/util/ArrayList;
+
+    invoke-virtual {v5}, Ljava/util/ArrayList;->size()I
+
+    move-result v4
+
+    .line 1191
+    .local v4, "size":I
+    new-array v5, v4, [Ljava/lang/String;
+
+    iput-object v5, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    .line 1192
+    const/4 v0, 0x0
+
+    .local v0, "i":I
+    :goto_0
+    if-ge v0, v4, :cond_0
+
+    .line 1193
+    iget-object v6, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->_userInputValues:Ljava/util/ArrayList;
+
+    invoke-virtual {v5, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Lcom/mojang/android/StringValue;
+
+    invoke-interface {v5}, Lcom/mojang/android/StringValue;->getStringValue()Ljava/lang/String;
+
+    move-result-object v5
+
+    aput-object v5, v6, v0
+
+    .line 1192
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_0
+
+    .line 1195
+    :cond_0
+    iget-object v6, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    array-length v7, v6
+
+    const/4 v5, 0x0
+
+    :goto_1
+    if-ge v5, v7, :cond_1
+
+    aget-object v3, v6, v5
+
+    .local v3, "s":Ljava/lang/String;
+    sget-object v8, Ljava/lang/System;->out:Ljava/io/PrintStream;
+
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, "js: "
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v9
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-virtual {v8, v9}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_1
+
+    .line 1197
+    .end local v3    # "s":Ljava/lang/String;
+    :cond_1
+    iput v11, p0, Lquack/mc/patocraft/MainActivity;->_userInputStatus:I
+
+    .line 1198
+    const-string v5, "input_method"
+
+    invoke-virtual {p0, v5}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/view/inputmethod/InputMethodManager;
+
+    .line 1199
+    .local v1, "inputManager":Landroid/view/inputmethod/InputMethodManager;
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getCurrentFocus()Landroid/view/View;
+
+    move-result-object v5
+
+    invoke-virtual {v1, v5, v11}, Landroid/view/inputmethod/InputMethodManager;->showSoftInput(Landroid/view/View;I)Z
+
+    move-result v2
+
+    .line 1200
+    .local v2, "result":Z
+    return-void
+.end method
+
+.method private processIntent(Landroid/content/Intent;)V
+    .locals 28
+    .param p1, "intent"    # Landroid/content/Intent;
+
+    .prologue
+    .line 1273
+    if-nez p1, :cond_1
+
+    .line 1387
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 1278
+    :cond_1
+    const-string v24, "intent_cmd"
+
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v24
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v8
+
+    .line 1279
+    .local v8, "extraCmd":Ljava/lang/String;
+    if-eqz v8, :cond_4
+
+    invoke-virtual {v8}, Ljava/lang/String;->length()I
+
+    move-result v24
+
+    if-lez v24, :cond_4
+
+    .line 1281
+    :try_start_0
+    new-instance v14, Lorg/json/JSONObject;
+
+    invoke-direct {v14, v8}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
+
+    .line 1282
+    .local v14, "json":Lorg/json/JSONObject;
+    const-string v24, "Command"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v14, v0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v6
+
+    .line 1283
+    .local v6, "command":Ljava/lang/String;
+    const-string v24, "keyboardResult"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v6, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_2
+
+    .line 1284
+    const-string v24, "Text"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v14, v0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v24
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v24
+
+    invoke-virtual {v0, v1}, Lquack/mc/patocraft/MainActivity;->nativeSetTextboxText(Ljava/lang/String;)V
+    :try_end_0
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 1296
+    .end local v6    # "command":Ljava/lang/String;
+    .end local v14    # "json":Lorg/json/JSONObject;
+    :catch_0
+    move-exception v7
+
+    .line 1297
+    .local v7, "e":Lorg/json/JSONException;
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "JSONObject exception:"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual {v7}, Lorg/json/JSONException;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 1286
+    .end local v7    # "e":Lorg/json/JSONException;
+    .restart local v6    # "command":Ljava/lang/String;
+    .restart local v14    # "json":Lorg/json/JSONObject;
+    :cond_2
+    :try_start_1
+    const-string v24, "fileDialogResult"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v6, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_0
+
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    move-wide/from16 v24, v0
+
+    const-wide/16 v26, 0x0
+
+    cmp-long v24, v24, v26
+
+    if-eqz v24, :cond_0
+
+    .line 1287
+    const-string v24, "Result"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v14, v0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v24
+
+    const-string v25, "Ok"
+
+    invoke-virtual/range {v24 .. v25}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_3
+
+    .line 1288
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    move-wide/from16 v24, v0
+
+    const-string v26, "Path"
+
+    move-object/from16 v0, v26
+
+    invoke-virtual {v14, v0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v26
+
+    move-object/from16 v0, p0
+
+    move-wide/from16 v1, v24
+
+    move-object/from16 v3, v26
+
+    invoke-virtual {v0, v1, v2, v3}, Lquack/mc/patocraft/MainActivity;->nativeOnPickImageSuccess(JLjava/lang/String;)V
+
+    .line 1293
+    :goto_1
+    const-wide/16 v24, 0x0
+
+    move-wide/from16 v0, v24
+
+    move-object/from16 v2, p0
+
+    iput-wide v0, v2, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    goto/16 :goto_0
+
+    .line 1291
+    :cond_3
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    move-wide/from16 v24, v0
+
+    move-object/from16 v0, p0
+
+    move-wide/from16 v1, v24
+
+    invoke-virtual {v0, v1, v2}, Lquack/mc/patocraft/MainActivity;->nativeOnPickImageCanceled(J)V
+    :try_end_1
+    .catch Lorg/json/JSONException; {:try_start_1 .. :try_end_1} :catch_0
+
+    goto :goto_1
+
+    .line 1303
+    .end local v6    # "command":Ljava/lang/String;
+    .end local v14    # "json":Lorg/json/JSONObject;
+    :cond_4
+    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 1304
+    .local v4, "action":Ljava/lang/String;
+    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getType()Ljava/lang/String;
+
+    move-result-object v22
+
+    .line 1306
+    .local v22, "type":Ljava/lang/String;
+    const-string v24, "xbox_live_game_invite"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_5
+
+    .line 1309
+    const-string v24, "xbl"
+
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v24
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v14
+
+    .line 1310
+    .local v14, "json":Ljava/lang/String;
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "[XboxLive] Received Invite "
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    move-object/from16 v0, v25
+
+    invoke-virtual {v0, v14}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1314
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v4, v14}, Lquack/mc/patocraft/MainActivity;->nativeProcessIntentUriQuery(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 1316
+    .end local v14    # "json":Ljava/lang/String;
+    :cond_5
+    const-string v24, "android.intent.action.VIEW"
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_0
+
+    .line 1317
+    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getScheme()Ljava/lang/String;
+
+    move-result-object v18
+
+    .line 1318
+    .local v18, "scheme":Ljava/lang/String;
+    invoke-virtual/range {p1 .. p1}, Landroid/content/Intent;->getData()Landroid/net/Uri;
+
+    move-result-object v23
+
+    .line 1319
+    .local v23, "uri":Landroid/net/Uri;
+    if-eqz v23, :cond_0
+
+    .line 1323
+    const-string v24, "minecraft"
+
+    move-object/from16 v0, v24
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_7
+
+    .line 1324
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getHost()Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 1325
+    .local v10, "host":Ljava/lang/String;
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getQuery()Ljava/lang/String;
+
+    move-result-object v16
+
+    .line 1327
+    .local v16, "query":Ljava/lang/String;
+    if-nez v10, :cond_6
+
+    if-eqz v16, :cond_0
+
+    .line 1328
+    :cond_6
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v16
+
+    invoke-virtual {v0, v10, v1}, Lquack/mc/patocraft/MainActivity;->nativeProcessIntentUriQuery(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 1331
+    .end local v10    # "host":Ljava/lang/String;
+    .end local v16    # "query":Ljava/lang/String;
+    :cond_7
+    const-string v24, "file"
+
+    move-object/from16 v0, v24
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_8
+
+    .line 1334
+    const-string v24, "fileIntent"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    const-string v26, "&"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v24
+
+    move-object/from16 v2, v25
+
+    invoke-virtual {v0, v1, v2}, Lquack/mc/patocraft/MainActivity;->nativeProcessIntentUriQuery(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 1336
+    :cond_8
+    const-string v24, "content"
+
+    move-object/from16 v0, v24
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v24
+
+    if-eqz v24, :cond_0
+
+    .line 1339
+    new-instance v24, Ljava/io/File;
+
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-direct/range {v24 .. v25}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual/range {v24 .. v24}, Ljava/io/File;->getName()Ljava/lang/String;
+
+    move-result-object v9
+
+    .line 1340
+    .local v9, "filename":Ljava/lang/String;
+    new-instance v20, Ljava/io/File;
+
+    new-instance v24, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v24 .. v24}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual/range {p0 .. p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Landroid/content/Context;->getCacheDir()Ljava/io/File;
+
+    move-result-object v25
+
+    invoke-virtual/range {v24 .. v25}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v24
+
+    const-string v25, "/"
+
+    invoke-virtual/range {v24 .. v25}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v24
+
+    move-object/from16 v0, v24
+
+    invoke-virtual {v0, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v24
+
+    invoke-virtual/range {v24 .. v24}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v24
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, v24
+
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    .line 1342
+    .local v20, "tempFile":Ljava/io/File;
+    invoke-virtual/range {p0 .. p0}, Lquack/mc/patocraft/MainActivity;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v17
+
+    .line 1346
+    .local v17, "resolver":Landroid/content/ContentResolver;
+    :try_start_2
+    move-object/from16 v0, v17
+
+    move-object/from16 v1, v23
+
+    invoke-virtual {v0, v1}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_3
+
+    move-result-object v11
+
+    .line 1354
+    .local v11, "input":Ljava/io/InputStream;
+    :try_start_3
+    new-instance v15, Ljava/io/FileOutputStream;
+
+    move-object/from16 v0, v20
+
+    invoke-direct {v15, v0}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+
+    .line 1356
+    .local v15, "output":Ljava/io/OutputStream;
+    const/16 v19, 0x0
+
+    .line 1357
+    .local v19, "size":I
+    const/high16 v5, 0x100000
+
+    .line 1358
+    .local v5, "buffer":I
+    new-array v0, v5, [B
+
+    move-object/from16 v21, v0
+
+    .line 1360
+    .local v21, "tmp":[B
+    :goto_2
+    move-object/from16 v0, v21
+
+    invoke-virtual {v11, v0}, Ljava/io/InputStream;->read([B)I
+
+    move-result v19
+
+    const/16 v24, -0x1
+
+    move/from16 v0, v19
+
+    move/from16 v1, v24
+
+    if-eq v0, v1, :cond_9
+
+    .line 1361
+    const/16 v24, 0x0
+
+    move-object/from16 v0, v21
+
+    move/from16 v1, v24
+
+    move/from16 v2, v19
+
+    invoke-virtual {v15, v0, v1, v2}, Ljava/io/OutputStream;->write([BII)V
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
+    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+
+    goto :goto_2
+
+    .line 1368
+    .end local v5    # "buffer":I
+    .end local v15    # "output":Ljava/io/OutputStream;
+    .end local v19    # "size":I
+    .end local v21    # "tmp":[B
+    :catch_1
+    move-exception v12
+
+    .line 1369
+    .local v12, "ioe":Ljava/io/IOException;
+    :try_start_4
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "IOException while copying file from content intent\n"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual {v12}, Ljava/io/IOException;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_0
+
+    .line 1373
+    :try_start_5
+    invoke-virtual/range {v20 .. v20}, Ljava/io/File;->delete()Z
+    :try_end_5
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_6
+    .catchall {:try_start_5 .. :try_end_5} :catchall_0
+
+    .line 1378
+    :goto_3
+    :try_start_6
+    invoke-virtual {v11}, Ljava/io/InputStream;->close()V
+    :try_end_6
+    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_2
+
+    goto/16 :goto_0
+
+    .line 1380
+    :catch_2
+    move-exception v13
+
+    .line 1381
+    .local v13, "ioe2":Ljava/io/IOException;
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "IOException while closing input stream\n"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual {v13}, Ljava/io/IOException;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto/16 :goto_0
+
+    .line 1348
+    .end local v11    # "input":Ljava/io/InputStream;
+    .end local v12    # "ioe":Ljava/io/IOException;
+    .end local v13    # "ioe2":Ljava/io/IOException;
+    :catch_3
+    move-exception v12
+
+    .line 1349
+    .restart local v12    # "ioe":Ljava/io/IOException;
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "IOException while opening file from content intent\n"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual {v12}, Ljava/io/IOException;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto/16 :goto_0
+
+    .line 1364
+    .end local v12    # "ioe":Ljava/io/IOException;
+    .restart local v5    # "buffer":I
+    .restart local v11    # "input":Ljava/io/InputStream;
+    .restart local v15    # "output":Ljava/io/OutputStream;
+    .restart local v19    # "size":I
+    .restart local v21    # "tmp":[B
+    :cond_9
+    :try_start_7
+    invoke-virtual {v15}, Ljava/io/OutputStream;->close()V
+
+    .line 1367
+    const-string v24, "contentIntent"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual/range {v23 .. v23}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    const-string v26, "&"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v20 .. v20}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v24
+
+    move-object/from16 v2, v25
+
+    invoke-virtual {v0, v1, v2}, Lquack/mc/patocraft/MainActivity;->nativeProcessIntentUriQuery(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_7
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_1
+    .catchall {:try_start_7 .. :try_end_7} :catchall_0
+
+    .line 1378
+    :try_start_8
+    invoke-virtual {v11}, Ljava/io/InputStream;->close()V
+    :try_end_8
+    .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_4
+
+    goto/16 :goto_0
+
+    .line 1380
+    :catch_4
+    move-exception v13
+
+    .line 1381
+    .restart local v13    # "ioe2":Ljava/io/IOException;
+    const-string v24, "MCPE"
+
+    new-instance v25, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v25 .. v25}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v26, "IOException while closing input stream\n"
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual {v13}, Ljava/io/IOException;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-virtual/range {v25 .. v26}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v25
+
+    invoke-virtual/range {v25 .. v25}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v25
+
+    invoke-static/range {v24 .. v25}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto/16 :goto_0
+
+    .line 1377
+    .end local v5    # "buffer":I
+    .end local v13    # "ioe2":Ljava/io/IOException;
+    .end local v15    # "output":Ljava/io/OutputStream;
+    .end local v19    # "size":I
+    .end local v21    # "tmp":[B
+    :catchall_0
+    move-exception v24
+
+    .line 1378
+    :try_start_9
+    invoke-virtual {v11}, Ljava/io/InputStream;->close()V
+    :try_end_9
+    .catch Ljava/io/IOException; {:try_start_9 .. :try_end_9} :catch_5
+
+    .line 1382
+    :goto_4
+    throw v24
+
+    .line 1380
+    :catch_5
+    move-exception v13
+
+    .line 1381
+    .restart local v13    # "ioe2":Ljava/io/IOException;
+    const-string v25, "MCPE"
+
+    new-instance v26, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v26 .. v26}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v27, "IOException while closing input stream\n"
+
+    invoke-virtual/range {v26 .. v27}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v26
+
+    invoke-virtual {v13}, Ljava/io/IOException;->toString()Ljava/lang/String;
+
+    move-result-object v27
+
+    invoke-virtual/range {v26 .. v27}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v26
+
+    invoke-virtual/range {v26 .. v26}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v26
+
+    invoke-static/range {v25 .. v26}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_4
+
+    .line 1375
+    .end local v13    # "ioe2":Ljava/io/IOException;
+    .restart local v12    # "ioe":Ljava/io/IOException;
+    :catch_6
+    move-exception v24
+
+    goto/16 :goto_3
+.end method
+
+.method private registerCrashManager()V
+    .locals 2
+
+    .prologue
+    .line 1551
+    const-string v0, "3db796c2fc084bbc907764b7deb378c5"
+
+    new-instance v1, Lquack/mc/patocraft/MainActivity$16;
+
+    invoke-direct {v1, p0}, Lquack/mc/patocraft/MainActivity$16;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-static {p0, v0, v1}, Lnet/hockeyapp/android/CrashManager;->register(Landroid/content/Context;Ljava/lang/String;Lnet/hockeyapp/android/CrashManagerListener;)V
+
+    .line 1556
+    return-void
+.end method
+
+.method public static saveScreenshot(Ljava/lang/String;II[I)V
+    .locals 6
+    .param p0, "filename"    # Ljava/lang/String;
+    .param p1, "w"    # I
+    .param p2, "h"    # I
+    .param p3, "pixels"    # [I
+
+    .prologue
+    .line 705
+    sget-object v3, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
+
+    invoke-static {p3, p1, p2, v3}, Landroid/graphics/Bitmap;->createBitmap([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
+
+    move-result-object v0
+
+    .line 710
+    .local v0, "bitmap":Landroid/graphics/Bitmap;
+    :try_start_0
+    new-instance v2, Ljava/io/FileOutputStream;
+
+    invoke-direct {v2, p0}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
+
+    .line 711
+    .local v2, "fos":Ljava/io/FileOutputStream;
+    sget-object v3, Landroid/graphics/Bitmap$CompressFormat;->JPEG:Landroid/graphics/Bitmap$CompressFormat;
+
+    const/16 v4, 0x55
+
+    invoke-virtual {v0, v3, v4, v2}, Landroid/graphics/Bitmap;->compress(Landroid/graphics/Bitmap$CompressFormat;ILjava/io/OutputStream;)Z
+    :try_end_0
+    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 715
+    :try_start_1
+    invoke-virtual {v2}, Ljava/io/FileOutputStream;->flush()V
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Ljava/io/FileNotFoundException; {:try_start_1 .. :try_end_1} :catch_1
+
+    .line 721
+    :goto_0
+    :try_start_2
+    invoke-virtual {v2}, Ljava/io/FileOutputStream;->close()V
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_2
+    .catch Ljava/io/FileNotFoundException; {:try_start_2 .. :try_end_2} :catch_1
+
+    .line 730
+    .end local v2    # "fos":Ljava/io/FileOutputStream;
+    :goto_1
+    return-void
+
+    .line 716
+    .restart local v2    # "fos":Ljava/io/FileOutputStream;
+    :catch_0
+    move-exception v1
+
+    .line 717
+    .local v1, "e":Ljava/io/IOException;
+    :try_start_3
+    invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
+    :try_end_3
+    .catch Ljava/io/FileNotFoundException; {:try_start_3 .. :try_end_3} :catch_1
+
+    goto :goto_0
+
+    .line 726
+    .end local v1    # "e":Ljava/io/IOException;
+    .end local v2    # "fos":Ljava/io/FileOutputStream;
+    :catch_1
+    move-exception v1
+
+    .line 727
+    .local v1, "e":Ljava/io/FileNotFoundException;
+    sget-object v3, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "Couldn\'t create file: "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 728
+    invoke-virtual {v1}, Ljava/io/FileNotFoundException;->printStackTrace()V
+
+    goto :goto_1
+
+    .line 722
+    .end local v1    # "e":Ljava/io/FileNotFoundException;
+    .restart local v2    # "fos":Ljava/io/FileOutputStream;
+    :catch_2
+    move-exception v1
+
+    .line 723
+    .local v1, "e":Ljava/io/IOException;
+    :try_start_4
+    invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
+    :try_end_4
+    .catch Ljava/io/FileNotFoundException; {:try_start_4 .. :try_end_4} :catch_1
+
+    goto :goto_1
+.end method
+
+.method private native setUpBreakpad(Ljava/lang/String;)V
+.end method
+
+
+# virtual methods
+.method public MC_GetActiveScreen()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1607
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->isPublishBuild()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1609
+    const-string v0, ""
+
+    .line 1612
+    :goto_0
+    return-object v0
+
+    :cond_0
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeGetActiveScreen()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public MC_ScreenIsPresentInStack(Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+    .param p1, "expectedName"    # Ljava/lang/String;
+
+    .prologue
+    .line 1619
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->isPublishBuild()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1621
+    const-string v0, ""
+
+    .line 1624
+    :goto_0
+    return-object v0
+
+    :cond_0
+    invoke-virtual {p0, p1}, Lquack/mc/patocraft/MainActivity;->nativeScreenIsPresentInStack(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public addListener(Lquack/mc/patocraft/ActivityListener;)V
+    .locals 1
+    .param p1, "listener"    # Lquack/mc/patocraft/ActivityListener;
+
+    .prologue
+    .line 1481
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->mActivityListeners:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1482
+    return-void
+.end method
+
+.method public buyGame()V
+    .locals 0
+
+    .prologue
+    .line 951
+    return-void
+.end method
+
+.method public calculateAvailableDiskFreeSpace(Ljava/lang/String;)J
+    .locals 5
+    .param p1, "rootPath"    # Ljava/lang/String;
+
+    .prologue
+    .line 1174
+    new-instance v2, Landroid/os/StatFs;
+
+    invoke-direct {v2, p1}, Landroid/os/StatFs;-><init>(Ljava/lang/String;)V
+
+    .line 1175
+    .local v2, "stat":Landroid/os/StatFs;
+    const-wide/16 v0, 0x0
+
+    .line 1179
+    .local v0, "freeMemory":J
+    sget v3, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v4, 0x12
+
+    if-lt v3, v4, :cond_0
+
+    .line 1180
+    invoke-virtual {v2}, Landroid/os/StatFs;->getAvailableBytes()J
+
+    move-result-wide v0
+
+    .line 1186
+    :goto_0
+    return-wide v0
+
+    .line 1183
+    :cond_0
+    invoke-virtual {v2}, Landroid/os/StatFs;->getAvailableBlocks()I
+
+    move-result v3
+
+    invoke-virtual {v2}, Landroid/os/StatFs;->getBlockSize()I
+
+    move-result v4
+
+    mul-int/2addr v3, v4
+
+    int-to-long v0, v3
+
+    goto :goto_0
+.end method
+
+.method public checkLicense()I
+    .locals 1
+
+    .prologue
+    .line 924
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public clearLoginInformation()V
+    .locals 3
+
+    .prologue
+    .line 1003
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v1
+
+    .line 1004
+    .local v1, "prefs":Landroid/content/SharedPreferences;
+    invoke-interface {v1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 1005
+    .local v0, "edit":Landroid/content/SharedPreferences$Editor;
+    const-string v2, "accessToken"
+
+    invoke-interface {v0, v2}, Landroid/content/SharedPreferences$Editor;->remove(Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 1006
+    const-string v2, "clientId"
+
+    invoke-interface {v0, v2}, Landroid/content/SharedPreferences$Editor;->remove(Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 1007
+    const-string v2, "profileId"
+
+    invoke-interface {v0, v2}, Landroid/content/SharedPreferences$Editor;->remove(Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 1008
+    const-string v2, "profileName"
+
+    invoke-interface {v0, v2}, Landroid/content/SharedPreferences$Editor;->remove(Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 1009
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    .line 1010
+    return-void
+.end method
+
+.method public createAndroidLaunchIntent()Landroid/content/Intent;
+    .locals 3
+
+    .prologue
+    .line 1403
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 1404
+    .local v0, "context":Landroid/content/Context;
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v1
+
+    invoke-virtual {v0}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public createUUID()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1399
+    invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "-"
+
+    const-string v2, ""
+
+    invoke-virtual {v0, v1, v2}, Ljava/lang/String;->replaceAll(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public dispatchKeyEvent(Landroid/view/KeyEvent;)Z
+    .locals 2
+    .param p1, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    .line 255
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getCharacters()Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_0
+
+    .line 256
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getCharacters()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->nativeTypeCharacter(Ljava/lang/String;)V
+
+    .line 259
+    :cond_0
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getKeyCode()I
+
+    move-result v0
+
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getAction()I
+
+    move-result v1
+
+    invoke-virtual {p0, v0, v1}, Lquack/mc/patocraft/MainActivity;->nativeKeyHandler(II)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 260
+    const/4 v0, 0x1
+
+    .line 263
+    :goto_0
+    return v0
+
+    :cond_1
+    invoke-super {p0, p1}, Landroid/app/NativeActivity;->dispatchKeyEvent(Landroid/view/KeyEvent;)Z
+
+    move-result v0
+
+    goto :goto_0
+.end method
+
+.method public displayDialog(I)V
+    .locals 0
+    .param p1, "dialogId"    # I
+
+    .prologue
+    .line 947
+    return-void
+.end method
+
+.method public getAPIVersion(Ljava/lang/String;)I
+    .locals 9
+    .param p1, "apiName"    # Ljava/lang/String;
+
+    .prologue
+    .line 1508
+    const-class v4, Landroid/os/Build$VERSION_CODES;
+
+    invoke-virtual {v4}, Ljava/lang/Class;->getFields()[Ljava/lang/reflect/Field;
+
+    move-result-object v3
+
+    .line 1509
+    .local v3, "fields":[Ljava/lang/reflect/Field;
+    array-length v5, v3
+
+    const/4 v4, 0x0
+
+    :goto_0
+    if-ge v4, v5, :cond_1
+
+    aget-object v1, v3, v4
+
+    .line 1510
+    .local v1, "field":Ljava/lang/reflect/Field;
+    invoke-virtual {v1}, Ljava/lang/reflect/Field;->getName()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1512
+    .local v2, "fieldName":Ljava/lang/String;
+    if-ne v2, p1, :cond_0
+
+    .line 1514
+    :try_start_0
+    new-instance v6, Ljava/lang/Object;
+
+    invoke-direct {v6}, Ljava/lang/Object;-><init>()V
+
+    invoke-virtual {v1, v6}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_2
+
+    move-result v4
+
+    .line 1529
+    .end local v1    # "field":Ljava/lang/reflect/Field;
+    .end local v2    # "fieldName":Ljava/lang/String;
+    :goto_1
+    return v4
+
+    .line 1516
+    .restart local v1    # "field":Ljava/lang/reflect/Field;
+    .restart local v2    # "fieldName":Ljava/lang/String;
+    :catch_0
+    move-exception v0
+
+    .line 1517
+    .local v0, "e":Ljava/lang/IllegalArgumentException;
+    const-string v6, "MCPE"
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v8, "IllegalArgumentException in getApiVersion("
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ")"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v6, v7}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1509
+    .end local v0    # "e":Ljava/lang/IllegalArgumentException;
+    :cond_0
+    :goto_2
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_0
+
+    .line 1519
+    :catch_1
+    move-exception v0
+
+    .line 1520
+    .local v0, "e":Ljava/lang/IllegalAccessException;
+    const-string v6, "MCPE"
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v8, "IllegalAccessException in getApiVersion("
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ")"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v6, v7}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_2
+
+    .line 1522
+    .end local v0    # "e":Ljava/lang/IllegalAccessException;
+    :catch_2
+    move-exception v0
+
+    .line 1523
+    .local v0, "e":Ljava/lang/NullPointerException;
+    const-string v6, "MCPE"
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v8, "NullPointerException in getApiVersion("
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ")"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v6, v7}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_2
+
+    .line 1528
+    .end local v0    # "e":Ljava/lang/NullPointerException;
+    .end local v1    # "field":Ljava/lang/reflect/Field;
+    .end local v2    # "fieldName":Ljava/lang/String;
+    :cond_1
+    const-string v4, "MCPE"
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, "Failed to find API version for: "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1529
+    const/4 v4, -0x1
+
+    goto :goto_1
+.end method
+
+.method public getAccessToken()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1013
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v0
+
+    .line 1014
+    .local v0, "prefs":Landroid/content/SharedPreferences;
+    const-string v1, "accessToken"
+
+    const-string v2, ""
+
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public getAndroidVersion()I
+    .locals 1
+
+    .prologue
+    .line 902
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    return v0
+.end method
+
+.method public getAvailableMemory()J
+    .locals 4
+
+    .prologue
+    .line 1162
+    const-string v2, "activity"
+
+    invoke-virtual {p0, v2}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/app/ActivityManager;
+
+    .line 1163
+    .local v0, "activityManager":Landroid/app/ActivityManager;
+    new-instance v1, Landroid/app/ActivityManager$MemoryInfo;
+
+    invoke-direct {v1}, Landroid/app/ActivityManager$MemoryInfo;-><init>()V
+
+    .line 1164
+    .local v1, "memoryInfo":Landroid/app/ActivityManager$MemoryInfo;
+    invoke-virtual {v0, v1}, Landroid/app/ActivityManager;->getMemoryInfo(Landroid/app/ActivityManager$MemoryInfo;)V
+
+    .line 1165
+    iget-wide v2, v1, Landroid/app/ActivityManager$MemoryInfo;->availMem:J
+
+    return-wide v2
+.end method
+
+.method public getBroadcastAddresses()[Ljava/lang/String;
+    .locals 7
+
+    .prologue
+    .line 1085
+    new-instance v1, Ljava/util/ArrayList;
+
+    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+
+    .line 1087
+    .local v1, "list":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    :try_start_0
+    const-string v4, "java.net.preferIPv4Stack"
+
+    const-string v5, "true"
+
+    invoke-static {v4, v5}, Ljava/lang/System;->setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    .line 1088
+    invoke-static {}, Ljava/net/NetworkInterface;->getNetworkInterfaces()Ljava/util/Enumeration;
+
+    move-result-object v3
+
+    .local v3, "niEnum":Ljava/util/Enumeration;, "Ljava/util/Enumeration<Ljava/net/NetworkInterface;>;"
+    :cond_0
+    invoke-interface {v3}, Ljava/util/Enumeration;->hasMoreElements()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_2
+
+    .line 1089
+    invoke-interface {v3}, Ljava/util/Enumeration;->nextElement()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/net/NetworkInterface;
+
+    .line 1090
+    .local v2, "ni":Ljava/net/NetworkInterface;
+    invoke-virtual {v2}, Ljava/net/NetworkInterface;->isLoopback()Z
+
+    move-result v4
+
+    if-nez v4, :cond_0
+
+    .line 1091
+    invoke-virtual {v2}, Ljava/net/NetworkInterface;->getInterfaceAddresses()Ljava/util/List;
+
+    move-result-object v4
+
+    invoke-interface {v4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v4
+
+    :cond_1
+    :goto_0
+    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/net/InterfaceAddress;
+
+    .line 1092
+    .local v0, "interfaceAddress":Ljava/net/InterfaceAddress;
+    invoke-virtual {v0}, Ljava/net/InterfaceAddress;->getBroadcast()Ljava/net/InetAddress;
+
+    move-result-object v5
+
+    if-eqz v5, :cond_1
+
+    .line 1093
+    invoke-virtual {v0}, Ljava/net/InterfaceAddress;->getBroadcast()Ljava/net/InetAddress;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/net/InetAddress;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    const/4 v6, 0x1
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-virtual {v1, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 1097
+    .end local v0    # "interfaceAddress":Ljava/net/InterfaceAddress;
+    .end local v2    # "ni":Ljava/net/NetworkInterface;
+    .end local v3    # "niEnum":Ljava/util/Enumeration;, "Ljava/util/Enumeration<Ljava/net/NetworkInterface;>;"
+    :catch_0
+    move-exception v4
+
+    .line 1100
+    :cond_2
+    invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
+
+    move-result v4
+
+    new-array v4, v4, [Ljava/lang/String;
+
+    invoke-virtual {v1, v4}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, [Ljava/lang/String;
+
+    return-object v4
+.end method
+
+.method public getClientId()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1018
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v0
+
+    .line 1019
+    .local v0, "prefs":Landroid/content/SharedPreferences;
+    const-string v1, "clientId"
+
+    const-string v2, ""
+
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public getCursorPosition()I
+    .locals 1
+
+    .prologue
+    .line 621
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    if-nez v0, :cond_1
+
+    .line 622
+    :cond_0
+    const/4 v0, -0x1
+
+    .line 624
+    :goto_0
+    return v0
+
+    :cond_1
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v0}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->getSelectionStart()I
+
+    move-result v0
+
+    goto :goto_0
+.end method
+
+.method public getDeviceModel()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 906
+    invoke-static {}, Lquack/mc/patocraft/HardwareInformation;->getDeviceModelName()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getExternalStoragePath()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 914
+    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getFileDataBytes(Ljava/lang/String;)[B
+    .locals 14
+    .param p1, "filename"    # Ljava/lang/String;
+
+    .prologue
+    .line 780
+    invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v11
+
+    if-eqz v11, :cond_0
+
+    .line 781
+    const/4 v11, 0x0
+
+    .line 834
+    :goto_0
+    return-object v11
+
+    .line 785
+    :cond_0
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v3
+
+    .line 786
+    .local v3, "context":Landroid/content/Context;
+    const/4 v0, 0x0
+
+    .line 788
+    .local v0, "assets":Landroid/content/res/AssetManager;
+    :try_start_0
+    invoke-virtual {v3}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+
+    move-result-object v0
+
+    .line 789
+    if-nez v0, :cond_1
+
+    .line 790
+    sget-object v11, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "getAssets returned null: Could not getFileDataBytes "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v11, v12}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 791
+    const/4 v11, 0x0
+
+    goto :goto_0
+
+    .line 794
+    :catch_0
+    move-exception v5
+
+    .line 795
+    .local v5, "e":Ljava/lang/NullPointerException;
+    sget-object v11, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "getAssets threw NPE: Could not getFileDataBytes "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v11, v12}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 796
+    const/4 v11, 0x0
+
+    goto :goto_0
+
+    .line 801
+    .end local v5    # "e":Ljava/lang/NullPointerException;
+    :cond_1
+    :try_start_1
+    invoke-virtual {v0, p1}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
+
+    move-result-object v8
+
+    .line 802
+    .local v8, "is":Ljava/io/InputStream;
+    new-instance v1, Ljava/io/BufferedInputStream;
+
+    invoke-direct {v1, v8}, Ljava/io/BufferedInputStream;-><init>(Ljava/io/InputStream;)V
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
+
+    .line 816
+    .end local v8    # "is":Ljava/io/InputStream;
+    .local v1, "bis":Ljava/io/BufferedInputStream;
+    :goto_1
+    const/high16 v2, 0x100000
+
+    .line 818
+    .local v2, "buffer":I
+    new-instance v9, Ljava/io/ByteArrayOutputStream;
+
+    invoke-direct {v9, v2}, Ljava/io/ByteArrayOutputStream;-><init>(I)V
+
+    .line 819
+    .local v9, "s":Ljava/io/ByteArrayOutputStream;
+    new-array v10, v2, [B
+
+    .line 823
+    .local v10, "tmp":[B
+    :goto_2
+    :try_start_2
+    invoke-virtual {v1, v10}, Ljava/io/BufferedInputStream;->read([B)I
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_3
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    move-result v4
+
+    .line 824
+    .local v4, "count":I
+    if-gtz v4, :cond_2
+
+    .line 830
+    :try_start_3
+    invoke-virtual {v1}, Ljava/io/BufferedInputStream;->close()V
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_5
+
+    .line 834
+    .end local v4    # "count":I
+    :goto_3
+    invoke-virtual {v9}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+
+    move-result-object v11
+
+    goto :goto_0
+
+    .line 803
+    .end local v1    # "bis":Ljava/io/BufferedInputStream;
+    .end local v2    # "buffer":I
+    .end local v9    # "s":Ljava/io/ByteArrayOutputStream;
+    .end local v10    # "tmp":[B
+    :catch_1
+    move-exception v5
+
+    .line 804
+    .local v5, "e":Ljava/io/IOException;
+    sget-object v11, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "Cannot find file "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, " in AssetManager"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v11, v12}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 806
+    new-instance v7, Ljava/io/File;
+
+    invoke-direct {v7, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    .line 808
+    .local v7, "f":Ljava/io/File;
+    :try_start_4
+    new-instance v1, Ljava/io/BufferedInputStream;
+
+    new-instance v11, Ljava/io/FileInputStream;
+
+    invoke-direct {v11, p1}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {v1, v11}, Ljava/io/BufferedInputStream;-><init>(Ljava/io/InputStream;)V
+    :try_end_4
+    .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_2
+
+    .restart local v1    # "bis":Ljava/io/BufferedInputStream;
+    goto :goto_1
+
+    .line 809
+    .end local v1    # "bis":Ljava/io/BufferedInputStream;
+    :catch_2
+    move-exception v6
+
+    .line 810
+    .local v6, "ex":Ljava/io/IOException;
+    sget-object v11, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "Cannot find file "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v11, v12}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 811
+    invoke-virtual {v6}, Ljava/io/IOException;->printStackTrace()V
+
+    .line 812
+    const/4 v11, 0x0
+
+    goto/16 :goto_0
+
+    .line 825
+    .end local v5    # "e":Ljava/io/IOException;
+    .end local v6    # "ex":Ljava/io/IOException;
+    .end local v7    # "f":Ljava/io/File;
+    .restart local v1    # "bis":Ljava/io/BufferedInputStream;
+    .restart local v2    # "buffer":I
+    .restart local v4    # "count":I
+    .restart local v9    # "s":Ljava/io/ByteArrayOutputStream;
+    .restart local v10    # "tmp":[B
+    :cond_2
+    const/4 v11, 0x0
+
+    :try_start_5
+    invoke-virtual {v9, v10, v11, v4}, Ljava/io/ByteArrayOutputStream;->write([BII)V
+    :try_end_5
+    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_3
+    .catchall {:try_start_5 .. :try_end_5} :catchall_0
+
+    goto :goto_2
+
+    .line 827
+    .end local v4    # "count":I
+    :catch_3
+    move-exception v5
+
+    .line 828
+    .restart local v5    # "e":Ljava/io/IOException;
+    :try_start_6
+    sget-object v11, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "Cannot read from file "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v11, v12}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+    :try_end_6
+    .catchall {:try_start_6 .. :try_end_6} :catchall_0
+
+    .line 830
+    :try_start_7
+    invoke-virtual {v1}, Ljava/io/BufferedInputStream;->close()V
+    :try_end_7
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_4
+
+    goto :goto_3
+
+    .line 831
+    :catch_4
+    move-exception v11
+
+    goto :goto_3
+
+    .line 830
+    .end local v5    # "e":Ljava/io/IOException;
+    :catchall_0
+    move-exception v11
+
+    :try_start_8
+    invoke-virtual {v1}, Ljava/io/BufferedInputStream;->close()V
+    :try_end_8
+    .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_6
+
+    .line 831
+    :goto_4
+    throw v11
+
+    .restart local v4    # "count":I
+    :catch_5
+    move-exception v11
+
+    goto :goto_3
+
+    .end local v4    # "count":I
+    :catch_6
+    move-exception v12
+
+    goto :goto_4
+.end method
+
+.method public getFileTimestamp(I)Ljava/lang/String;
+    .locals 8
+    .param p1, "s"    # I
+
+    .prologue
+    .line 932
+    new-instance v1, Ljava/text/SimpleDateFormat;
+
+    const-string v2, "__EEE__yyyy_MM_dd__HH_mm_ss\'.txt\'"
+
+    invoke-direct {v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
+
+    new-instance v2, Ljava/util/Date;
+
+    int-to-long v4, p1
+
+    const-wide/16 v6, 0x3e8
+
+    mul-long/2addr v4, v6
+
+    invoke-direct {v2, v4, v5}, Ljava/util/Date;-><init>(J)V
+
+    invoke-virtual {v1, v2}, Ljava/text/SimpleDateFormat;->format(Ljava/util/Date;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 933
+    .local v0, "out":Ljava/lang/String;
+    return-object v0
+.end method
+
+.method public getFormattedDateString(I)Ljava/lang/String;
+    .locals 6
+    .param p1, "s"    # I
+
+    .prologue
+    .line 927
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->DateFormat:Ljava/text/DateFormat;
+
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->DateFormat:Ljava/text/DateFormat;
+
+    const/4 v1, 0x3
+
+    iget-object v2, p0, Lquack/mc/patocraft/MainActivity;->initialUserLocale:Ljava/util/Locale;
+
+    invoke-static {v1, v2}, Ljava/text/DateFormat;->getDateInstance(ILjava/util/Locale;)Ljava/text/DateFormat;
+
+    move-result-object v0
+
+    .line 928
+    .local v0, "formatter":Ljava/text/DateFormat;
+    new-instance v1, Ljava/util/Date;
+
+    int-to-long v2, p1
+
+    const-wide/16 v4, 0x3e8
+
+    mul-long/2addr v2, v4
+
+    invoke-direct {v1, v2, v3}, Ljava/util/Date;-><init>(J)V
+
+    invoke-virtual {v0, v1}, Ljava/text/DateFormat;->format(Ljava/util/Date;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public getIPAddresses()[Ljava/lang/String;
+    .locals 8
+
+    .prologue
+    .line 1104
+    new-instance v2, Ljava/util/ArrayList;
+
+    invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
+
+    .line 1106
+    .local v2, "list":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    :try_start_0
+    const-string v5, "java.net.preferIPv4Stack"
+
+    const-string v6, "true"
+
+    invoke-static {v5, v6}, Ljava/lang/System;->setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    .line 1107
+    invoke-static {}, Ljava/net/NetworkInterface;->getNetworkInterfaces()Ljava/util/Enumeration;
+
+    move-result-object v4
+
+    .local v4, "niEnum":Ljava/util/Enumeration;, "Ljava/util/Enumeration<Ljava/net/NetworkInterface;>;"
+    :cond_0
+    invoke-interface {v4}, Ljava/util/Enumeration;->hasMoreElements()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_2
+
+    .line 1108
+    invoke-interface {v4}, Ljava/util/Enumeration;->nextElement()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/net/NetworkInterface;
+
+    .line 1109
+    .local v3, "ni":Ljava/net/NetworkInterface;
+    invoke-virtual {v3}, Ljava/net/NetworkInterface;->isLoopback()Z
+
+    move-result v5
+
+    if-nez v5, :cond_0
+
+    invoke-virtual {v3}, Ljava/net/NetworkInterface;->isUp()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    .line 1110
+    invoke-virtual {v3}, Ljava/net/NetworkInterface;->getInterfaceAddresses()Ljava/util/List;
+
+    move-result-object v5
+
+    invoke-interface {v5}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v5
+
+    :cond_1
+    :goto_0
+    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_0
+
+    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/net/InterfaceAddress;
+
+    .line 1111
+    .local v1, "interfaceAddress":Ljava/net/InterfaceAddress;
+    invoke-virtual {v1}, Ljava/net/InterfaceAddress;->getAddress()Ljava/net/InetAddress;
+
+    move-result-object v0
+
+    .line 1114
+    .local v0, "addr":Ljava/net/InetAddress;
+    if-eqz v0, :cond_1
+
+    invoke-virtual {v0}, Ljava/net/InetAddress;->isAnyLocalAddress()Z
+
+    move-result v6
+
+    if-nez v6, :cond_1
+
+    invoke-virtual {v0}, Ljava/net/InetAddress;->isMulticastAddress()Z
+
+    move-result v6
+
+    if-nez v6, :cond_1
+
+    invoke-virtual {v0}, Ljava/net/InetAddress;->isLinkLocalAddress()Z
+
+    move-result v6
+
+    if-nez v6, :cond_1
+
+    .line 1115
+    invoke-virtual {v1}, Ljava/net/InterfaceAddress;->getAddress()Ljava/net/InetAddress;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/net/InetAddress;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    const/4 v7, 0x1
+
+    invoke-virtual {v6, v7}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-virtual {v2, v6}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 1120
+    .end local v0    # "addr":Ljava/net/InetAddress;
+    .end local v1    # "interfaceAddress":Ljava/net/InterfaceAddress;
+    .end local v3    # "ni":Ljava/net/NetworkInterface;
+    .end local v4    # "niEnum":Ljava/util/Enumeration;, "Ljava/util/Enumeration<Ljava/net/NetworkInterface;>;"
+    :catch_0
+    move-exception v5
+
+    .line 1123
+    :cond_2
+    invoke-virtual {v2}, Ljava/util/ArrayList;->size()I
+
+    move-result v5
+
+    new-array v5, v5, [Ljava/lang/String;
+
+    invoke-virtual {v2, v5}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, [Ljava/lang/String;
+
+    return-object v5
+.end method
+
+.method public getImageData(Ljava/lang/String;)[I
+    .locals 12
+    .param p1, "filename"    # Ljava/lang/String;
+
+    .prologue
+    const/4 v1, 0x0
+
+    const/4 v4, 0x0
+
+    .line 838
+    const/4 v0, 0x0
+
+    .line 842
+    .local v0, "bm":Landroid/graphics/Bitmap;
+    invoke-static {p1}, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+
+    move-result-object v0
+
+    .line 844
+    if-nez v0, :cond_0
+
+    .line 846
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v9
+
+    .line 850
+    .local v9, "context":Landroid/content/Context;
+    :try_start_0
+    invoke-virtual {v9}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+    :try_end_0
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
+
+    move-result-object v8
+
+    .line 851
+    .local v8, "assets":Landroid/content/res/AssetManager;
+    if-eqz v8, :cond_1
+
+    .line 853
+    const/4 v11, 0x0
+
+    .line 855
+    .local v11, "inputStream":Ljava/io/InputStream;
+    :try_start_1
+    invoke-virtual {v8, p1}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Ljava/lang/NullPointerException; {:try_start_1 .. :try_end_1} :catch_1
+
+    move-result-object v11
+
+    .line 861
+    :try_start_2
+    invoke-static {v11}, Landroid/graphics/BitmapFactory;->decodeStream(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+    :try_end_2
+    .catch Ljava/lang/NullPointerException; {:try_start_2 .. :try_end_2} :catch_1
+
+    move-result-object v0
+
+    .line 876
+    .end local v8    # "assets":Landroid/content/res/AssetManager;
+    .end local v9    # "context":Landroid/content/Context;
+    .end local v11    # "inputStream":Ljava/io/InputStream;
+    :cond_0
+    invoke-virtual {v0}, Landroid/graphics/Bitmap;->getWidth()I
+
+    move-result v3
+
+    .line 877
+    .local v3, "w":I
+    invoke-virtual {v0}, Landroid/graphics/Bitmap;->getHeight()I
+
+    move-result v7
+
+    .line 879
+    .local v7, "h":I
+    mul-int v2, v3, v7
+
+    add-int/lit8 v2, v2, 0x2
+
+    new-array v1, v2, [I
+
+    .line 880
+    .local v1, "pixels":[I
+    aput v3, v1, v4
+
+    .line 881
+    const/4 v2, 0x1
+
+    aput v7, v1, v2
+
+    .line 882
+    const/4 v2, 0x2
+
+    move v5, v4
+
+    move v6, v3
+
+    invoke-virtual/range {v0 .. v7}, Landroid/graphics/Bitmap;->getPixels([IIIIIII)V
+
+    .line 884
+    .end local v1    # "pixels":[I
+    .end local v3    # "w":I
+    .end local v7    # "h":I
+    :goto_0
+    return-object v1
+
+    .line 856
+    .restart local v8    # "assets":Landroid/content/res/AssetManager;
+    .restart local v9    # "context":Landroid/content/Context;
+    .restart local v11    # "inputStream":Ljava/io/InputStream;
+    :catch_0
+    move-exception v10
+
+    .line 857
+    .local v10, "e":Ljava/io/IOException;
+    :try_start_3
+    sget-object v2, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "getImageData: Could not open image "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v2, v4}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+    :try_end_3
+    .catch Ljava/lang/NullPointerException; {:try_start_3 .. :try_end_3} :catch_1
+
+    goto :goto_0
+
+    .line 870
+    .end local v8    # "assets":Landroid/content/res/AssetManager;
+    .end local v10    # "e":Ljava/io/IOException;
+    .end local v11    # "inputStream":Ljava/io/InputStream;
+    :catch_1
+    move-exception v10
+
+    .line 871
+    .local v10, "e":Ljava/lang/NullPointerException;
+    sget-object v2, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "getAssets threw NPE: Could not open image "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v2, v4}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    goto :goto_0
+
+    .line 866
+    .end local v10    # "e":Ljava/lang/NullPointerException;
+    .restart local v8    # "assets":Landroid/content/res/AssetManager;
+    :cond_1
+    :try_start_4
+    sget-object v2, Ljava/lang/System;->err:Ljava/io/PrintStream;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "getAssets returned null: Could not open image "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v2, v4}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+    :try_end_4
+    .catch Ljava/lang/NullPointerException; {:try_start_4 .. :try_end_4} :catch_1
+
+    goto :goto_0
+.end method
+
+.method public getKeyFromKeyCode(III)I
+    .locals 4
+    .param p1, "keyCode"    # I
+    .param p2, "metaState"    # I
+    .param p3, "deviceId"    # I
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 692
+    if-gez p3, :cond_2
+
+    .line 693
+    invoke-static {}, Landroid/view/InputDevice;->getDeviceIds()[I
+
+    move-result-object v1
+
+    .line 694
+    .local v1, "ids":[I
+    array-length v3, v1
+
+    if-nez v3, :cond_1
+
+    .line 702
+    .end local v1    # "ids":[I
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 696
+    .restart local v1    # "ids":[I
+    :cond_1
+    aget p3, v1, v2
+
+    .line 698
+    .end local v1    # "ids":[I
+    :cond_2
+    invoke-static {p3}, Landroid/view/InputDevice;->getDevice(I)Landroid/view/InputDevice;
+
+    move-result-object v0
+
+    .line 699
+    .local v0, "device":Landroid/view/InputDevice;
+    if-eqz v0, :cond_0
+
+    .line 702
+    invoke-virtual {v0}, Landroid/view/InputDevice;->getKeyCharacterMap()Landroid/view/KeyCharacterMap;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1, p2}, Landroid/view/KeyCharacterMap;->get(II)I
+
+    move-result v2
+
+    goto :goto_0
+.end method
+
+.method public getKeyboardHeight()F
+    .locals 1
+
+    .prologue
+    .line 191
+    iget v0, p0, Lquack/mc/patocraft/MainActivity;->virtualKeyboardHeight:I
+
+    int-to-float v0, v0
+
+    return v0
+.end method
+
+.method public getLocale()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 910
+    invoke-static {}, Lquack/mc/patocraft/HardwareInformation;->getLocale()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getPixelsPerMillimeter()F
+    .locals 3
+
+    .prologue
+    .line 918
+    new-instance v0, Landroid/util/DisplayMetrics;
+
+    invoke-direct {v0}, Landroid/util/DisplayMetrics;-><init>()V
+
+    .line 919
+    .local v0, "metrics":Landroid/util/DisplayMetrics;
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getWindowManager()Landroid/view/WindowManager;
+
+    move-result-object v1
+
+    invoke-interface {v1}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Landroid/view/Display;->getMetrics(Landroid/util/DisplayMetrics;)V
+
+    .line 921
+    iget v1, v0, Landroid/util/DisplayMetrics;->xdpi:F
+
+    iget v2, v0, Landroid/util/DisplayMetrics;->ydpi:F
+
+    add-float/2addr v1, v2
+
+    const/high16 v2, 0x3f000000    # 0.5f
+
+    mul-float/2addr v1, v2
+
+    const v2, 0x41cb3333    # 25.4f
+
+    div-float/2addr v1, v2
+
+    return v1
+.end method
+
+.method public getPlatformStringVar(I)Ljava/lang/String;
+    .locals 1
+    .param p1, "id"    # I
+
+    .prologue
+    .line 954
+    if-nez p1, :cond_0
+
+    sget-object v0, Landroid/os/Build;->MODEL:Ljava/lang/String;
+
+    .line 955
+    :goto_0
+    return-object v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public getProfileId()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1023
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v0
+
+    .line 1024
+    .local v0, "prefs":Landroid/content/SharedPreferences;
+    const-string v1, "profileId"
+
+    const-string v2, ""
+
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public getProfileName()Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1028
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v0
+
+    .line 1029
+    .local v0, "prefs":Landroid/content/SharedPreferences;
+    const-string v1, "profileName"
+
+    const-string v2, ""
+
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method
+
+.method public getScreenHeight()I
+    .locals 5
+
+    .prologue
+    .line 895
+    const-string v2, "window"
+
+    invoke-virtual {p0, v2}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/view/WindowManager;
+
+    invoke-interface {v2}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
+
+    move-result-object v0
+
+    .line 896
+    .local v0, "display":Landroid/view/Display;
+    invoke-virtual {v0}, Landroid/view/Display;->getWidth()I
+
+    move-result v2
+
+    invoke-virtual {v0}, Landroid/view/Display;->getHeight()I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->min(II)I
+
+    move-result v1
+
+    .line 897
+    .local v1, "out":I
+    sget-object v2, Ljava/lang/System;->out:Ljava/io/PrintStream;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "getheight: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 898
+    return v1
+.end method
+
+.method public getScreenWidth()I
+    .locals 5
+
+    .prologue
+    .line 888
+    const-string v2, "window"
+
+    invoke-virtual {p0, v2}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/view/WindowManager;
+
+    invoke-interface {v2}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
+
+    move-result-object v0
+
+    .line 889
+    .local v0, "display":Landroid/view/Display;
+    invoke-virtual {v0}, Landroid/view/Display;->getWidth()I
+
+    move-result v2
+
+    invoke-virtual {v0}, Landroid/view/Display;->getHeight()I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->max(II)I
+
+    move-result v1
+
+    .line 890
+    .local v1, "out":I
+    sget-object v2, Ljava/lang/System;->out:Ljava/io/PrintStream;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "getwidth: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 891
+    return v1
+.end method
+
+.method public getTotalMemory()J
+    .locals 4
+
+    .prologue
+    .line 1151
+    const-string v2, "activity"
+
+    invoke-virtual {p0, v2}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/app/ActivityManager;
+
+    .line 1152
+    .local v0, "activityManager":Landroid/app/ActivityManager;
+    new-instance v1, Landroid/app/ActivityManager$MemoryInfo;
+
+    invoke-direct {v1}, Landroid/app/ActivityManager$MemoryInfo;-><init>()V
+
+    .line 1153
+    .local v1, "memoryInfo":Landroid/app/ActivityManager$MemoryInfo;
+    invoke-virtual {v0, v1}, Landroid/app/ActivityManager;->getMemoryInfo(Landroid/app/ActivityManager$MemoryInfo;)V
+
+    .line 1154
+    sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v3, 0x10
+
+    if-lt v2, v3, :cond_0
+
+    .line 1155
+    iget-wide v2, v1, Landroid/app/ActivityManager$MemoryInfo;->totalMem:J
+
+    .line 1158
+    :goto_0
+    return-wide v2
+
+    :cond_0
+    iget-wide v2, v1, Landroid/app/ActivityManager$MemoryInfo;->availMem:J
+
+    goto :goto_0
+.end method
+
+.method public getUsedMemory()J
+    .locals 2
+
+    .prologue
+    .line 1170
+    invoke-static {}, Landroid/os/Debug;->getNativeHeapAllocatedSize()J
+
+    move-result-wide v0
+
+    return-wide v0
+.end method
+
+.method public getUserInputStatus()I
+    .locals 1
+
+    .prologue
+    .line 1134
+    iget v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputStatus:I
+
+    return v0
+.end method
+
+.method public getUserInputString()[Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1135
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method public hasBuyButtonWhenInvalidLicense()Z
+    .locals 1
+
+    .prologue
+    .line 936
+    const/4 v0, 0x1
+
+    return v0
+.end method
+
+.method hasHardwareChanged()Z
+    .locals 6
+
+    .prologue
+    .line 1408
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v3
+
+    .line 1409
+    .local v3, "prefs":Landroid/content/SharedPreferences;
+    const-string v4, "lastAndroidVersion"
+
+    const-string v5, ""
+
+    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1410
+    .local v2, "lastAndroidVersion":Ljava/lang/String;
+    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v4
+
+    if-nez v4, :cond_0
+
+    sget-object v4, Landroid/os/Build$VERSION;->RELEASE:Ljava/lang/String;
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_2
+
+    :cond_0
+    const/4 v1, 0x1
+
+    .line 1411
+    .local v1, "firstHardwareStart":Z
+    :goto_0
+    if-eqz v1, :cond_1
+
+    .line 1412
+    invoke-interface {v3}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 1413
+    .local v0, "edit":Landroid/content/SharedPreferences$Editor;
+    const-string v4, "lastAndroidVersion"
+
+    sget-object v5, Landroid/os/Build$VERSION;->RELEASE:Ljava/lang/String;
+
+    invoke-interface {v0, v4, v5}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 1414
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    .line 1416
+    .end local v0    # "edit":Landroid/content/SharedPreferences$Editor;
+    :cond_1
+    return v1
+
+    .line 1410
+    .end local v1    # "firstHardwareStart":Z
+    :cond_2
+    const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method public hasWriteExternalStoragePermission()Z
+    .locals 1
+
+    .prologue
+    .line 319
+    const-string v0, "android.permission.WRITE_EXTERNAL_STORAGE"
+
+    invoke-static {p0, v0}, Landroid/support/v4/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    sput-boolean v0, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    .line 320
+    sget-boolean v0, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    return v0
+
+    .line 319
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public hideKeyboard()V
+    .locals 1
+
+    .prologue
+    .line 592
+    new-instance v0, Lquack/mc/patocraft/MainActivity$10;
+
+    invoke-direct {v0, p0}, Lquack/mc/patocraft/MainActivity$10;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 601
+    return-void
+.end method
+
+.method public initiateUserInput(I)V
+    .locals 1
+    .param p1, "id"    # I
+
+    .prologue
+    .line 1131
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputText:[Ljava/lang/String;
+
+    .line 1132
+    const/4 v0, -0x1
+
+    iput v0, p0, Lquack/mc/patocraft/MainActivity;->_userInputStatus:I
+
+    .line 1133
+    return-void
+.end method
+
+.method protected isDemo()Z
+    .locals 1
+
+    .prologue
+    .line 1389
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isFirstSnooperStart()Z
+    .locals 4
+
+    .prologue
+    .line 1393
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v0
+
+    .line 1394
+    .local v0, "prefs":Landroid/content/SharedPreferences;
+    const-string v2, "snooperId"
+
+    const-string v3, ""
+
+    invoke-interface {v0, v2, v3}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 1395
+    .local v1, "snooperID":Ljava/lang/String;
+    invoke-virtual {v1}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v2
+
+    return v2
+.end method
+
+.method public isMixerCreateInstalled()Z
+    .locals 3
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 324
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 326
+    .local v0, "context":Landroid/content/Context;
+    if-eqz v0, :cond_0
+
+    .line 327
+    invoke-direct {p0}, Lquack/mc/patocraft/MainActivity;->getMixerCreateInstalledPackage()Landroid/content/Intent;
+
+    move-result-object v1
+
+    .line 328
+    .local v1, "intent":Landroid/content/Intent;
+    if-eqz v1, :cond_0
+
+    const/4 v2, 0x1
+
+    .line 331
+    .end local v1    # "intent":Landroid/content/Intent;
+    :cond_0
+    return v2
+.end method
+
+.method public isNetworkEnabled(Z)Z
+    .locals 4
+    .param p1, "onlyWifiAllowed"    # Z
+
+    .prologue
+    const/4 v2, 0x1
+
+    .line 959
+    const-string v3, "connectivity"
+
+    invoke-virtual {p0, v3}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/net/ConnectivityManager;
+
+    .line 962
+    .local v0, "cm":Landroid/net/ConnectivityManager;
+    const/16 v3, 0x9
+
+    invoke-virtual {v0, v3}, Landroid/net/ConnectivityManager;->getNetworkInfo(I)Landroid/net/NetworkInfo;
+
+    move-result-object v1
+
+    .line 963
+    .local v1, "info":Landroid/net/NetworkInfo;
+    if-eqz v1, :cond_1
+
+    invoke-virtual {v1}, Landroid/net/NetworkInfo;->isConnected()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_1
+
+    .line 975
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 967
+    :cond_1
+    invoke-virtual {v0, v2}, Landroid/net/ConnectivityManager;->getNetworkInfo(I)Landroid/net/NetworkInfo;
+
+    move-result-object v1
+
+    .line 968
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Landroid/net/NetworkInfo;->isConnected()Z
+
+    move-result v3
+
+    if-nez v3, :cond_0
+
+    .line 974
+    :cond_2
+    invoke-virtual {v0}, Landroid/net/ConnectivityManager;->getActiveNetworkInfo()Landroid/net/NetworkInfo;
+
+    move-result-object v1
+
+    .line 975
+    if-eqz v1, :cond_3
+
+    invoke-virtual {v1}, Landroid/net/NetworkInfo;->isConnected()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_3
+
+    if-eqz p1, :cond_0
+
+    :cond_3
+    const/4 v2, 0x0
+
+    goto :goto_0
+.end method
+
+.method native isPublishBuild()Z
+.end method
+
+.method isTablet()Z
+    .locals 2
+
+    .prologue
+    .line 1420
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
+
+    move-result-object v1
+
+    iget v1, v1, Landroid/content/res/Configuration;->screenLayout:I
+
+    and-int/lit8 v0, v1, 0xf
+
+    .line 1421
+    .local v0, "screenLayout":I
+    const/4 v1, 0x4
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v1, 0x1
+
+    :goto_0
+    return v1
+
+    :cond_0
+    const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method public isTextToSpeechInProgress()Z
+    .locals 1
+
+    .prologue
+    .line 1501
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    if-eqz v0, :cond_0
+
+    .line 1502
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    invoke-virtual {v0}, Landroid/speech/tts/TextToSpeech;->isSpeaking()Z
+
+    move-result v0
+
+    .line 1504
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public launchMixerCreateForBroadcast()Z
+    .locals 6
+
+    .prologue
+    const/4 v3, 0x0
+
+    .line 387
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    .line 389
+    .local v1, "context":Landroid/content/Context;
+    if-eqz v1, :cond_1
+
+    .line 390
+    invoke-direct {p0}, Lquack/mc/patocraft/MainActivity;->getMixerCreateInstalledPackage()Landroid/content/Intent;
+
+    move-result-object v2
+
+    .line 393
+    .local v2, "intent":Landroid/content/Intent;
+    if-eqz v2, :cond_0
+
+    .line 394
+    const-string v3, "com.microsoft.beambroadcast.xle.app.action.TCUI"
+
+    invoke-virtual {v2, v3}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 395
+    new-instance v0, Landroid/os/Bundle;
+
+    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
+
+    .line 398
+    .local v0, "b":Landroid/os/Bundle;
+    const-string v3, "name"
+
+    const-string v4, "Minecraft"
+
+    invoke-virtual {v0, v3, v4}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 399
+    const-string v3, "package"
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getPackageName()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v0, v3, v4}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 400
+    invoke-virtual {v2, v0}, Landroid/content/Intent;->putExtras(Landroid/os/Bundle;)Landroid/content/Intent;
+
+    .line 401
+    const/high16 v3, 0x4000000
+
+    invoke-virtual {v2, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    .line 402
+    invoke-virtual {v1, v2}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+
+    .line 414
+    const/4 v3, 0x1
+
+    .end local v0    # "b":Landroid/os/Bundle;
+    .end local v2    # "intent":Landroid/content/Intent;
+    :goto_0
+    return v3
+
+    .line 405
+    .restart local v2    # "intent":Landroid/content/Intent;
+    :cond_0
+    const-string v4, "launchMixerCreateForBroadcast"
+
+    const-string v5, "No mixer create package installed on the device"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 410
+    .end local v2    # "intent":Landroid/content/Intent;
+    :cond_1
+    const-string v4, "launchMixerCreateForBroadcast"
+
+    const-string v5, "Application context is null"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+.end method
+
+.method public launchUri(Ljava/lang/String;)V
+    .locals 3
+    .param p1, "uri"    # Ljava/lang/String;
+
+    .prologue
+    .line 171
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v1, "android.intent.action.VIEW"
+
+    invoke-static {p1}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v2
+
+    invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+
+    .line 172
+    .local v0, "myIntent":Landroid/content/Intent;
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->startActivity(Landroid/content/Intent;)V
+
+    .line 173
+    return-void
+.end method
+
+.method native nativeBackPressed()V
+.end method
+
+.method native nativeBackSpacePressed()V
+.end method
+
+.method native nativeGetActiveScreen()Ljava/lang/String;
+.end method
+
+.method native nativeGetDeviceId()Ljava/lang/String;
+.end method
+
+.method native nativeKeyHandler(II)Z
+.end method
+
+.method native nativeOnDestroy()V
+.end method
+
+.method native nativeOnPickImageCanceled(J)V
+.end method
+
+.method native nativeOnPickImageSuccess(JLjava/lang/String;)V
+.end method
+
+.method native nativeProcessIntentUriQuery(Ljava/lang/String;Ljava/lang/String;)V
+.end method
+
+.method native nativeRegisterThis()V
+.end method
+
+.method native nativeReturnKeyPressed()V
+.end method
+
+.method native nativeScreenIsPresentInStack(Ljava/lang/String;)Ljava/lang/String;
+.end method
+
+.method native nativeSetHeadphonesConnected(Z)V
+.end method
+
+.method native nativeSetTextboxText(Ljava/lang/String;)V
+.end method
+
+.method native nativeStopThis()V
+.end method
+
+.method native nativeStoragePermissionRequestResult(ZI)V
+.end method
+
+.method native nativeSuspend()V
+.end method
+
+.method native nativeTypeCharacter(Ljava/lang/String;)V
+.end method
+
+.method native nativeUnregisterThis()V
+.end method
+
+.method public navigateToPlaystoreForMixerCreate()V
+    .locals 7
+
+    .prologue
+    .line 335
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 337
+    .local v0, "context":Landroid/content/Context;
+    if-eqz v0, :cond_0
+
+    .line 338
+    new-instance v2, Landroid/content/Intent;
+
+    const-string v3, "android.intent.action.VIEW"
+
+    invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 339
+    .local v2, "intent":Landroid/content/Intent;
+    const-string v3, "market://details?id=%s"
+
+    const/4 v4, 0x1
+
+    new-array v4, v4, [Ljava/lang/Object;
+
+    const/4 v5, 0x0
+
+    const-string v6, "com.microsoft.beambroadcast"
+
+    aput-object v6, v4, v5
+
+    invoke-static {v3, v4}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v3}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
+
+    .line 340
+    const/high16 v3, 0x10000000
+
+    invoke-virtual {v2, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    .line 342
+    :try_start_0
+    invoke-virtual {v0, v2}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    :try_end_0
+    .catch Landroid/content/ActivityNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 353
+    .end local v2    # "intent":Landroid/content/Intent;
+    :goto_0
+    return-void
+
+    .line 343
+    .restart local v2    # "intent":Landroid/content/Intent;
+    :catch_0
+    move-exception v1
+
+    .line 347
+    .local v1, "ex":Landroid/content/ActivityNotFoundException;
+    const-string v3, "navigateToPlaystoreForMixerCreate"
+
+    const-string v4, "launch market place- failed"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 351
+    .end local v1    # "ex":Landroid/content/ActivityNotFoundException;
+    .end local v2    # "intent":Landroid/content/Intent;
+    :cond_0
+    const-string v3, "getMixerCreateInstalledPackage"
+
+    const-string v4, "Application context is null"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+.end method
+
+.method protected onActivityResult(IILandroid/content/Intent;)V
+    .locals 12
+    .param p1, "requestCode"    # I
+    .param p2, "resultCode"    # I
+    .param p3, "data"    # Landroid/content/Intent;
+
+    .prologue
+    .line 1443
+    invoke-super {p0, p1, p2, p3}, Landroid/app/NativeActivity;->onActivityResult(IILandroid/content/Intent;)V
+
+    .line 1445
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->mActivityListeners:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :goto_0
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v8
+
+    check-cast v8, Lquack/mc/patocraft/ActivityListener;
+
+    .line 1446
+    .local v8, "listener":Lquack/mc/patocraft/ActivityListener;
+    invoke-interface {v8, p1, p2, p3}, Lquack/mc/patocraft/ActivityListener;->onActivityResult(IILandroid/content/Intent;)V
+
+    goto :goto_0
+
+    .line 1448
+    .end local v8    # "listener":Lquack/mc/patocraft/ActivityListener;
+    :cond_0
+    sget v0, Lquack/mc/patocraft/MainActivity;->RESULT_PICK_IMAGE:I
+
+    if-ne p1, v0, :cond_1
+
+    .line 1449
+    const/4 v0, -0x1
+
+    if-ne p2, v0, :cond_2
+
+    if-eqz p3, :cond_2
+
+    .line 1450
+    invoke-virtual {p3}, Landroid/content/Intent;->getData()Landroid/net/Uri;
+
+    move-result-object v1
+
+    .line 1451
+    .local v1, "selectedImage":Landroid/net/Uri;
+    if-eqz v1, :cond_1
+
+    .line 1452
+    const/4 v0, 0x1
+
+    new-array v2, v0, [Ljava/lang/String;
+
+    const/4 v0, 0x0
+
+    const-string v3, "_data"
+
+    aput-object v3, v2, v0
+
+    .line 1454
+    .local v2, "filePathColumn":[Ljava/lang/String;
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v0
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    invoke-virtual/range {v0 .. v5}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object v7
+
+    .line 1457
+    .local v7, "cursor":Landroid/database/Cursor;
+    if-eqz v7, :cond_1
+
+    .line 1458
+    invoke-interface {v7}, Landroid/database/Cursor;->moveToFirst()Z
+
+    .line 1460
+    const/4 v0, 0x0
+
+    aget-object v0, v2, v0
+
+    invoke-interface {v7, v0}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+
+    move-result v6
+
+    .line 1461
+    .local v6, "columnIndex":I
+    invoke-interface {v7, v6}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+
+    move-result-object v9
+
+    .line 1463
+    .local v9, "picturePath":Ljava/lang/String;
+    iget-wide v4, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    invoke-virtual {p0, v4, v5, v9}, Lquack/mc/patocraft/MainActivity;->nativeOnPickImageSuccess(JLjava/lang/String;)V
+
+    .line 1464
+    const-wide/16 v4, 0x0
+
+    iput-wide v4, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    .line 1466
+    invoke-interface {v7}, Landroid/database/Cursor;->close()V
+
+    .line 1478
+    .end local v1    # "selectedImage":Landroid/net/Uri;
+    .end local v2    # "filePathColumn":[Ljava/lang/String;
+    .end local v6    # "columnIndex":I
+    .end local v7    # "cursor":Landroid/database/Cursor;
+    .end local v9    # "picturePath":Ljava/lang/String;
+    :cond_1
+    :goto_1
+    return-void
+
+    .line 1473
+    :cond_2
+    iget-wide v4, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    const-wide/16 v10, 0x0
+
+    cmp-long v0, v4, v10
+
+    if-eqz v0, :cond_1
+
+    .line 1474
+    iget-wide v4, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    invoke-virtual {p0, v4, v5}, Lquack/mc/patocraft/MainActivity;->nativeOnPickImageCanceled(J)V
+
+    .line 1475
+    const-wide/16 v4, 0x0
+
+    iput-wide v4, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    goto :goto_1
+.end method
+
+.method public onBackPressed()V
+    .locals 0
+
+    .prologue
+    .line 642
+    return-void
+.end method
+
+.method public onCreate(Landroid/os/Bundle;)V
+    .locals 5
+    .param p1, "savedInstanceState"    # Landroid/os/Bundle;
+
+    .prologue
+    const/4 v2, 0x1
+
+    .line 208
+    invoke-super {p0, p1}, Landroid/app/NativeActivity;->onCreate(Landroid/os/Bundle;)V
+
+    .line 212
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    if-nez v1, :cond_0
+
+    .line 213
+    const-string v1, "mcpe - replacing"
+
+    const-string v3, "App is installing/replacing. Killing..."
+
+    invoke-static {v1, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 214
+    invoke-static {}, Landroid/os/Process;->myPid()I
+
+    move-result v1
+
+    invoke-static {v1}, Landroid/os/Process;->killProcess(I)V
+
+    .line 217
+    :cond_0
+    invoke-static {v2}, Lquack/mc/patocraft/platforms/Platform;->createPlatform(Z)Lquack/mc/patocraft/platforms/Platform;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->platform:Lquack/mc/patocraft/platforms/Platform;
+
+    .line 218
+    const/4 v1, 0x3
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->setVolumeControlStream(I)V
+
+    .line 219
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeRegisterThis()V
+
+    .line 220
+    invoke-static {p0}, Lorg/fmod/FMOD;->init(Landroid/content/Context;)V
+
+    .line 221
+    invoke-static {p0}, Lquack/mc/patocraft/input/InputDeviceManager;->create(Landroid/content/Context;)Lquack/mc/patocraft/input/InputDeviceManager;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->deviceManager:Lquack/mc/patocraft/input/InputDeviceManager;
+
+    .line 223
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->platform:Lquack/mc/patocraft/platforms/Platform;
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getWindow()Landroid/view/Window;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Landroid/view/Window;->getDecorView()Landroid/view/View;
+
+    move-result-object v3
+
+    invoke-virtual {v1, v3}, Lquack/mc/patocraft/platforms/Platform;->onAppStart(Landroid/view/View;)V
+
+    .line 225
+    const-string v1, "android.permission.WRITE_EXTERNAL_STORAGE"
+
+    invoke-static {p0, v1}, Landroid/support/v4/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    move v1, v2
+
+    :goto_0
+    sput-boolean v1, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    .line 227
+    new-instance v1, Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;
+
+    const/4 v3, 0x0
+
+    invoke-direct {v1, p0, v3}, Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;-><init>(Lquack/mc/patocraft/MainActivity;Lquack/mc/patocraft/MainActivity$1;)V
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->headsetConnectionReceiver:Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;
+
+    .line 228
+    const-string v1, "audio"
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/media/AudioManager;
+
+    .line 229
+    .local v0, "audio":Landroid/media/AudioManager;
+    invoke-virtual {v0}, Landroid/media/AudioManager;->isWiredHeadsetOn()Z
+
+    move-result v1
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->nativeSetHeadphonesConnected(Z)V
+
+    .line 231
+    const-string v1, "clipboard"
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/content/ClipboardManager;
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->clipboardManager:Landroid/content/ClipboardManager;
+
+    .line 232
+    invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lquack/mc/patocraft/MainActivity;->initialUserLocale:Ljava/util/Locale;
+
+    .line 235
+    invoke-static {p0}, Lnet/hockeyapp/android/Constants;->loadFromContext(Landroid/content/Context;)V
+
+    .line 236
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->isPublishBuild()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 237
+    sget-object v1, Lnet/hockeyapp/android/Constants;->FILES_PATH:Ljava/lang/String;
+
+    invoke-direct {p0, v1}, Lquack/mc/patocraft/MainActivity;->setUpBreakpad(Ljava/lang/String;)V
+
+    .line 238
+    const-string v1, "3db796c2fc084bbc907764b7deb378c5"
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeGetDeviceId()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {p0, v1, v3}, Lnet/hockeyapp/android/NativeCrashManager;->handleDumpFiles(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 239
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplication()Landroid/app/Application;
+
+    move-result-object v1
+
+    invoke-static {p0, v1}, Lnet/hockeyapp/android/metrics/MetricsManager;->register(Landroid/content/Context;Landroid/app/Application;)V
+
+    .line 243
+    :cond_1
+    invoke-static {}, Lcom/appsflyer/AppsFlyerLib;->getInstance()Lcom/appsflyer/AppsFlyerLib;
+
+    move-result-object v1
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplication()Landroid/app/Application;
+
+    move-result-object v3
+
+    const-string v4, "jBHFfePzvJhHdfvijAcLoQ"
+
+    invoke-virtual {v1, v3, v4}, Lcom/appsflyer/AppsFlyerLib;->startTracking(Landroid/app/Application;Ljava/lang/String;)V
+
+    .line 245
+    sput-object p0, Lquack/mc/patocraft/MainActivity;->mInstance:Lquack/mc/patocraft/MainActivity;
+
+    .line 246
+    iput-boolean v2, p0, Lquack/mc/patocraft/MainActivity;->_fromOnCreate:Z
+
+    .line 247
+    return-void
+
+    .line 225
+    .end local v0    # "audio":Landroid/media/AudioManager;
+    :cond_2
+    const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method protected onDestroy()V
+    .locals 3
+
+    .prologue
+    .line 1249
+    const-string v1, "MinecraftPE"
+
+    const-string v2, "onDestroy"
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1250
+    const/4 v1, 0x0
+
+    sput-object v1, Lquack/mc/patocraft/MainActivity;->mInstance:Lquack/mc/patocraft/MainActivity;
+
+    .line 1252
+    sget-object v1, Ljava/lang/System;->out:Ljava/io/PrintStream;
+
+    const-string v2, "onDestroy"
+
+    invoke-virtual {v1, v2}, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+    .line 1253
+    invoke-static {}, Lorg/fmod/FMOD;->close()V
+
+    .line 1255
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->mActivityListeners:Ljava/util/List;
+
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    :goto_0
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lquack/mc/patocraft/ActivityListener;
+
+    .line 1256
+    .local v0, "listener":Lquack/mc/patocraft/ActivityListener;
+    invoke-interface {v0}, Lquack/mc/patocraft/ActivityListener;->onDestroy()V
+
+    goto :goto_0
+
+    .line 1259
+    .end local v0    # "listener":Lquack/mc/patocraft/ActivityListener;
+    :cond_0
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeUnregisterThis()V
+
+    .line 1261
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeOnDestroy()V
+
+    .line 1262
+    invoke-super {p0}, Landroid/app/NativeActivity;->onDestroy()V
+
+    .line 1263
+    const/4 v1, 0x0
+
+    invoke-static {v1}, Ljava/lang/System;->exit(I)V
+
+    .line 1264
+    return-void
+.end method
+
+.method public onKey(Landroid/view/View;ILandroid/view/KeyEvent;)Z
+    .locals 1
+    .param p1, "v"    # Landroid/view/View;
+    .param p2, "keyCode"    # I
+    .param p3, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    .line 636
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public onKeyDown(ILandroid/view/KeyEvent;)Z
+    .locals 1
+    .param p1, "keyCode"    # I
+    .param p2, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    .line 689
+    invoke-super {p0, p1, p2}, Landroid/app/NativeActivity;->onKeyDown(ILandroid/view/KeyEvent;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public onKeyMultiple(IILandroid/view/KeyEvent;)Z
+    .locals 1
+    .param p1, "keyCode"    # I
+    .param p2, "repeatCount"    # I
+    .param p3, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    .line 630
+    invoke-super {p0, p1, p2, p3}, Landroid/app/NativeActivity;->onKeyMultiple(IILandroid/view/KeyEvent;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public onKeyUp(ILandroid/view/KeyEvent;)Z
+    .locals 1
+    .param p1, "keyCode"    # I
+    .param p2, "event"    # Landroid/view/KeyEvent;
+
+    .prologue
+    .line 268
+    const/16 v0, 0x19
+
+    if-eq p1, v0, :cond_0
+
+    const/16 v0, 0x18
+
+    if-ne p1, v0, :cond_1
+
+    .line 269
+    :cond_0
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->platform:Lquack/mc/patocraft/platforms/Platform;
+
+    invoke-virtual {v0}, Lquack/mc/patocraft/platforms/Platform;->onVolumePressed()V
+
+    .line 272
+    :cond_1
+    invoke-super {p0, p1, p2}, Landroid/app/NativeActivity;->onKeyUp(ILandroid/view/KeyEvent;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public onNewIntent(Landroid/content/Intent;)V
+    .locals 0
+    .param p1, "intent"    # Landroid/content/Intent;
+
+    .prologue
+    .line 1268
+    invoke-virtual {p0, p1}, Lquack/mc/patocraft/MainActivity;->setIntent(Landroid/content/Intent;)V
+
+    .line 1269
+    invoke-direct {p0, p1}, Lquack/mc/patocraft/MainActivity;->processIntent(Landroid/content/Intent;)V
+
+    .line 1270
+    return-void
+.end method
+
+.method protected onPause()V
+    .locals 2
+
+    .prologue
+    .line 1236
+    const-string v0, "MinecraftPE"
+
+    const-string v1, "onPause"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1237
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeSuspend()V
+
+    .line 1238
+    invoke-super {p0}, Landroid/app/NativeActivity;->onPause()V
+
+    .line 1239
+    return-void
+.end method
+
+.method public onRequestPermissionsResult(I[Ljava/lang/String;[I)V
+    .locals 3
+    .param p1, "requestCode"    # I
+    .param p2, "permissions"    # [Ljava/lang/String;
+    .param p3, "grantResults"    # [I
+
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v1, 0x0
+
+    .line 306
+    if-ne p1, v2, :cond_0
+
+    .line 307
+    aget v0, p3, v1
+
+    if-nez v0, :cond_1
+
+    .line 308
+    sput-boolean v2, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    .line 314
+    :goto_0
+    sget-boolean v0, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    iget v1, p0, Lquack/mc/patocraft/MainActivity;->mLastPermissionRequestReason:I
+
+    invoke-virtual {p0, v0, v1}, Lquack/mc/patocraft/MainActivity;->nativeStoragePermissionRequestResult(ZI)V
+
+    .line 316
+    :cond_0
+    return-void
+
+    .line 311
+    :cond_1
+    sput-boolean v1, Lquack/mc/patocraft/MainActivity;->mHasStoragePermission:Z
+
+    goto :goto_0
+.end method
+
+.method protected onResume()V
+    .locals 7
+
+    .prologue
+    .line 1216
+    const-string v5, "MinecraftPE"
+
+    const-string v6, "onResume"
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1217
+    invoke-super {p0}, Landroid/app/NativeActivity;->onResume()V
+
+    .line 1219
+    new-instance v0, Landroid/content/IntentFilter;
+
+    const-string v5, "android.intent.action.HEADSET_PLUG"
+
+    invoke-direct {v0, v5}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+
+    .line 1220
+    .local v0, "filter":Landroid/content/IntentFilter;
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->headsetConnectionReceiver:Lquack/mc/patocraft/MainActivity$HeadsetConnectionReceiver;
+
+    invoke-virtual {p0, v5, v0}, Lquack/mc/patocraft/MainActivity;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+
+    .line 1221
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    if-eqz v5, :cond_0
+
+    .line 1222
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->getText()Landroid/text/Editable;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 1223
+    .local v4, "oldText":Ljava/lang/String;
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    iget v2, v5, Lquack/mc/patocraft/TextInputProxyEditTextbox;->allowedLength:I
+
+    .line 1224
+    .local v2, "maxNumCharacters":I
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    iget-boolean v1, v5, Lquack/mc/patocraft/TextInputProxyEditTextbox;->limitInput:Z
+
+    .line 1225
+    .local v1, "limitInput":Z
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->getInputType()I
+
+    move-result v5
+
+    and-int/lit8 v5, v5, 0x2
+
+    const/4 v6, 0x2
+
+    if-ne v5, v6, :cond_1
+
+    const/4 v3, 0x1
+
+    .line 1227
+    .local v3, "numbersOnly":Z
+    :goto_0
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->getInputType()I
+
+    .line 1228
+    iget-object v5, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v5}, Landroid/widget/PopupWindow;->dismiss()V
+
+    .line 1229
+    const/4 v5, 0x0
+
+    iput-object v5, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    .line 1230
+    invoke-virtual {p0, v4, v2, v1, v3}, Lquack/mc/patocraft/MainActivity;->showKeyboard(Ljava/lang/String;IZZ)V
+
+    .line 1231
+    invoke-direct {p0}, Lquack/mc/patocraft/MainActivity;->registerCrashManager()V
+
+    .line 1233
+    .end local v1    # "limitInput":Z
+    .end local v2    # "maxNumCharacters":I
+    .end local v3    # "numbersOnly":Z
+    .end local v4    # "oldText":Ljava/lang/String;
+    :cond_0
+    return-void
+
+    .line 1225
+    .restart local v1    # "limitInput":Z
+    .restart local v2    # "maxNumCharacters":I
+    .restart local v4    # "oldText":Ljava/lang/String;
+    :cond_1
+    const/4 v3, 0x0
+
+    goto :goto_0
+.end method
+
+.method protected onStart()V
+    .locals 3
+    .annotation build Landroid/annotation/SuppressLint;
+        value = {
+            "DefaultLocale"
+        }
+    .end annotation
+
+    .prologue
+    .line 1204
+    const-string v1, "MinecraftPE"
+
+    const-string v2, "onStart"
+
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1205
+    invoke-super {p0}, Landroid/app/NativeActivity;->onStart()V
+
+    .line 1206
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->deviceManager:Lquack/mc/patocraft/input/InputDeviceManager;
+
+    invoke-virtual {v1}, Lquack/mc/patocraft/input/InputDeviceManager;->register()V
+
+    .line 1208
+    iget-boolean v1, p0, Lquack/mc/patocraft/MainActivity;->_fromOnCreate:Z
+
+    if-eqz v1, :cond_0
+
+    .line 1209
+    const/4 v1, 0x0
+
+    iput-boolean v1, p0, Lquack/mc/patocraft/MainActivity;->_fromOnCreate:Z
+
+    .line 1210
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    .line 1211
+    .local v0, "intent":Landroid/content/Intent;
+    invoke-direct {p0, v0}, Lquack/mc/patocraft/MainActivity;->processIntent(Landroid/content/Intent;)V
+
+    .line 1213
+    .end local v0    # "intent":Landroid/content/Intent;
+    :cond_0
+    return-void
+.end method
+
+.method protected onStop()V
+    .locals 2
+
+    .prologue
+    .line 1242
+    const-string v0, "MinecraftPE"
+
+    const-string v1, "onStop"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1243
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->nativeStopThis()V
+
+    .line 1244
+    invoke-super {p0}, Landroid/app/NativeActivity;->onStop()V
+
+    .line 1246
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->deviceManager:Lquack/mc/patocraft/input/InputDeviceManager;
+
+    invoke-virtual {v0}, Lquack/mc/patocraft/input/InputDeviceManager;->unregister()V
+
+    .line 1247
+    return-void
+.end method
+
+.method public onWindowFocusChanged(Z)V
+    .locals 1
+    .param p1, "hasFocus"    # Z
+
+    .prologue
+    .line 679
+    invoke-super {p0, p1}, Landroid/app/NativeActivity;->onWindowFocusChanged(Z)V
+
+    .line 680
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->platform:Lquack/mc/patocraft/platforms/Platform;
+
+    invoke-virtual {v0, p1}, Lquack/mc/patocraft/platforms/Platform;->onViewFocusChanged(Z)V
+
+    .line 681
+    return-void
+.end method
+
+.method pickImage(J)V
+    .locals 3
+    .param p1, "callback"    # J
+
+    .prologue
+    .line 1428
+    iput-wide p1, p0, Lquack/mc/patocraft/MainActivity;->mCallback:J
+
+    .line 1430
+    :try_start_0
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v1, "android.intent.action.PICK"
+
+    sget-object v2, Landroid/provider/MediaStore$Images$Media;->EXTERNAL_CONTENT_URI:Landroid/net/Uri;
+
+    invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+
+    .line 1432
+    .local v0, "i":Landroid/content/Intent;
+    sget v1, Lquack/mc/patocraft/MainActivity;->RESULT_PICK_IMAGE:I
+
+    invoke-virtual {p0, v0, v1}, Lquack/mc/patocraft/MainActivity;->startActivityForResult(Landroid/content/Intent;I)V
+    :try_end_0
+    .catch Landroid/content/ActivityNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1435
+    .end local v0    # "i":Landroid/content/Intent;
+    :goto_0
+    return-void
+
+    .line 1433
+    :catch_0
+    move-exception v1
+
+    goto :goto_0
+.end method
+
+.method public postScreenshotToFacebook(Ljava/lang/String;II[I)V
+    .locals 0
+    .param p1, "filename"    # Ljava/lang/String;
+    .param p2, "w"    # I
+    .param p3, "h"    # I
+    .param p4, "pixels"    # [I
+
+    .prologue
+    .line 939
+    return-void
+.end method
+
+.method public quit()V
+    .locals 1
+
+    .prologue
+    .line 943
+    new-instance v0, Lquack/mc/patocraft/MainActivity$15;
+
+    invoke-direct {v0, p0}, Lquack/mc/patocraft/MainActivity$15;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 945
+    return-void
+.end method
+
+.method public removeListener(Lquack/mc/patocraft/ActivityListener;)V
+    .locals 1
+    .param p1, "listener"    # Lquack/mc/patocraft/ActivityListener;
+
+    .prologue
+    .line 1485
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->mActivityListeners:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
+
+    .line 1486
+    return-void
+.end method
+
+.method public requestStoragePermission(I)V
+    .locals 4
+    .param p1, "permissionReason"    # I
+
+    .prologue
+    const/4 v3, 0x1
+
+    .line 298
+    new-array v0, v3, [Ljava/lang/String;
+
+    const/4 v1, 0x0
+
+    const-string v2, "android.permission.WRITE_EXTERNAL_STORAGE"
+
+    aput-object v2, v0, v1
+
+    .line 301
+    .local v0, "permissions":[Ljava/lang/String;
+    iput p1, p0, Lquack/mc/patocraft/MainActivity;->mLastPermissionRequestReason:I
+
+    .line 302
+    invoke-static {p0, v0, v3}, Landroid/support/v4/app/ActivityCompat;->requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
+
+    .line 303
+    return-void
+.end method
+
+.method public setClipboard(Ljava/lang/String;)V
+    .locals 2
+    .param p1, "value"    # Ljava/lang/String;
+
+    .prologue
+    .line 186
+    const-string v1, "MCPE-Clipdata"
+
+    invoke-static {v1, p1}, Landroid/content/ClipData;->newPlainText(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Landroid/content/ClipData;
+
+    move-result-object v0
+
+    .line 187
+    .local v0, "clip":Landroid/content/ClipData;
+    iget-object v1, p0, Lquack/mc/patocraft/MainActivity;->clipboardManager:Landroid/content/ClipboardManager;
+
+    invoke-virtual {v1, v0}, Landroid/content/ClipboardManager;->setPrimaryClip(Landroid/content/ClipData;)V
+
+    .line 188
+    return-void
+.end method
+
+.method setFileDialogCallback(J)V
+    .locals 1
+    .param p1, "callback"    # J
+
+    .prologue
+    .line 1438
+    iput-wide p1, p0, Lquack/mc/patocraft/MainActivity;->mFileDialogCallback:J
+
+    .line 1439
+    return-void
+.end method
+
+.method public setIsPowerVR(Z)V
+    .locals 0
+    .param p1, "status"    # Z
+
+    .prologue
+    .line 672
+    sput-boolean p1, Lquack/mc/patocraft/MainActivity;->_isPowerVr:Z
+
+    return-void
+.end method
+
+.method public setLoginInformation(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    .locals 3
+    .param p1, "accessToken"    # Ljava/lang/String;
+    .param p2, "clientId"    # Ljava/lang/String;
+    .param p3, "profileId"    # Ljava/lang/String;
+    .param p4, "profileName"    # Ljava/lang/String;
+
+    .prologue
+    .line 993
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v1
+
+    .line 994
+    .local v1, "prefs":Landroid/content/SharedPreferences;
+    invoke-interface {v1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 995
+    .local v0, "edit":Landroid/content/SharedPreferences$Editor;
+    const-string v2, "accessToken"
+
+    invoke-interface {v0, v2, p1}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 996
+    const-string v2, "clientId"
+
+    invoke-interface {v0, v2, p2}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 997
+    const-string v2, "profileId"
+
+    invoke-interface {v0, v2, p3}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 998
+    const-string v2, "profileName"
+
+    invoke-interface {v0, v2, p4}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 999
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    .line 1000
+    return-void
+.end method
+
+.method public setRefreshToken(Ljava/lang/String;)V
+    .locals 3
+    .param p1, "refreshToken"    # Ljava/lang/String;
+
+    .prologue
+    .line 986
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v1
+
+    .line 987
+    .local v1, "prefs":Landroid/content/SharedPreferences;
+    invoke-interface {v1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 988
+    .local v0, "edit":Landroid/content/SharedPreferences$Editor;
+    const-string v2, "refreshToken"
+
+    invoke-interface {v0, v2, p1}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 989
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    .line 990
+    return-void
+.end method
+
+.method public setSession(Ljava/lang/String;)V
+    .locals 3
+    .param p1, "sessionId"    # Ljava/lang/String;
+
+    .prologue
+    .line 979
+    invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+
+    move-result-object v1
+
+    .line 980
+    .local v1, "prefs":Landroid/content/SharedPreferences;
+    invoke-interface {v1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+
+    move-result-object v0
+
+    .line 981
+    .local v0, "edit":Landroid/content/SharedPreferences$Editor;
+    const-string v2, "sessionID"
+
+    invoke-interface {v0, v2, p1}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+
+    .line 982
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    .line 983
+    return-void
+.end method
+
+.method public setTextToSpeechEnabled(Z)V
+    .locals 3
+    .param p1, "enabled"    # Z
+
+    .prologue
+    .line 276
+    if-eqz p1, :cond_1
+
+    .line 277
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    if-nez v0, :cond_0
+
+    .line 279
+    :try_start_0
+    new-instance v0, Landroid/speech/tts/TextToSpeech;
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    new-instance v2, Lquack/mc/patocraft/MainActivity$1;
+
+    invoke-direct {v2, p0}, Lquack/mc/patocraft/MainActivity$1;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-direct {v0, v1, v2}, Landroid/speech/tts/TextToSpeech;-><init>(Landroid/content/Context;Landroid/speech/tts/TextToSpeech$OnInitListener;)V
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 294
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 292
+    :cond_1
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    goto :goto_0
+
+    .line 286
+    :catch_0
+    move-exception v0
+
+    goto :goto_0
+.end method
+
+.method public setupKeyboardViews(Ljava/lang/String;IZZ)V
+    .locals 11
+    .param p1, "text"    # Ljava/lang/String;
+    .param p2, "maxLength"    # I
+    .param p3, "limitInput"    # Z
+    .param p4, "numbersOnly"    # Z
+
+    .prologue
+    const v10, -0xc350
+
+    const/4 v9, -0x2
+
+    const/4 v8, -0x5
+
+    const/4 v7, 0x1
+
+    const/4 v6, 0x0
+
+    .line 418
+    new-instance v4, Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-direct {v4, p0, p2, p3}, Lquack/mc/patocraft/TextInputProxyEditTextbox;-><init>(Landroid/content/Context;IZ)V
+
+    iput-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    .line 419
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v4, v7}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setFocusable(Z)V
+
+    .line 420
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v4, v7}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setFocusableInTouchMode(Z)V
+
+    .line 421
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    const/high16 v5, 0xa0000
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setInputType(I)V
+
+    .line 422
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    const v5, 0x10000005
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setImeOptions(I)V
+
+    .line 423
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v4, p1}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setText(Ljava/lang/CharSequence;)V
+
+    .line 424
+    if-eqz p4, :cond_0
+
+    .line 425
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    const/4 v5, 0x2
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setInputType(I)V
+
+    .line 428
+    :cond_0
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$2;
+
+    invoke-direct {v5, p0}, Lquack/mc/patocraft/MainActivity$2;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setOnEditorActionListener(Landroid/widget/TextView$OnEditorActionListener;)V
+
+    .line 457
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$3;
+
+    invoke-direct {v5, p0}, Lquack/mc/patocraft/MainActivity$3;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->addTextChangedListener(Landroid/text/TextWatcher;)V
+
+    .line 470
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$4;
+
+    invoke-direct {v5, p0}, Lquack/mc/patocraft/MainActivity$4;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v4, v5}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->setOnMCPEKeyWatcher(Lquack/mc/patocraft/TextInputProxyEditTextbox$MCPEKeyWatcher;)V
+
+    .line 498
+    new-instance v4, Landroid/widget/PopupWindow;
+
+    invoke-direct {v4, p0}, Landroid/widget/PopupWindow;-><init>(Landroid/content/Context;)V
+
+    iput-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    .line 499
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v7}, Landroid/widget/PopupWindow;->setInputMethodMode(I)V
+
+    .line 501
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    const/16 v5, 0x140
+
+    invoke-virtual {v4, v5}, Landroid/widget/PopupWindow;->setWidth(I)V
+
+    .line 502
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    const/16 v5, 0x32
+
+    invoke-virtual {v4, v5}, Landroid/widget/PopupWindow;->setHeight(I)V
+
+    .line 503
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v9, v9}, Landroid/widget/PopupWindow;->setWindowLayoutMode(II)V
+
+    .line 504
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v6}, Landroid/widget/PopupWindow;->setClippingEnabled(Z)V
+
+    .line 505
+    new-instance v1, Landroid/widget/LinearLayout;
+
+    invoke-direct {v1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    .line 506
+    .local v1, "layout":Landroid/widget/LinearLayout;
+    new-instance v2, Landroid/widget/LinearLayout;
+
+    invoke-direct {v2, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    .line 509
+    .local v2, "mainLayout":Landroid/widget/LinearLayout;
+    invoke-virtual {v1, v8, v8, v8, v8}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+
+    .line 510
+    new-instance v3, Landroid/view/ViewGroup$MarginLayoutParams;
+
+    invoke-direct {v3, v9, v9}, Landroid/view/ViewGroup$MarginLayoutParams;-><init>(II)V
+
+    .line 511
+    .local v3, "params":Landroid/view/ViewGroup$MarginLayoutParams;
+    invoke-virtual {v3, v6, v6, v6, v6}, Landroid/view/ViewGroup$MarginLayoutParams;->setMargins(IIII)V
+
+    .line 512
+    invoke-virtual {v1, v7}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    .line 513
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    invoke-virtual {v1, v4, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 514
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v1}, Landroid/widget/PopupWindow;->setContentView(Landroid/view/View;)V
+
+    .line 515
+    invoke-virtual {p0, v2, v3}, Lquack/mc/patocraft/MainActivity;->setContentView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 517
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v7}, Landroid/widget/PopupWindow;->setOutsideTouchable(Z)V
+
+    .line 518
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$5;
+
+    invoke-direct {v5, p0}, Lquack/mc/patocraft/MainActivity$5;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    invoke-virtual {v4, v5}, Landroid/widget/PopupWindow;->setTouchInterceptor(Landroid/view/View$OnTouchListener;)V
+
+    .line 529
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v2, v6, v10, v6}, Landroid/widget/PopupWindow;->showAtLocation(Landroid/view/View;III)V
+
+    .line 530
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v7}, Landroid/widget/PopupWindow;->setFocusable(Z)V
+
+    .line 531
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4}, Landroid/widget/PopupWindow;->update()V
+
+    .line 533
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4}, Landroid/widget/PopupWindow;->dismiss()V
+
+    .line 535
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v2, v6, v10, v6}, Landroid/widget/PopupWindow;->showAtLocation(Landroid/view/View;III)V
+
+    .line 536
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4, v7}, Landroid/widget/PopupWindow;->setFocusable(Z)V
+
+    .line 537
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->mHiddenTextInputDialog:Landroid/widget/PopupWindow;
+
+    invoke-virtual {v4}, Landroid/widget/PopupWindow;->update()V
+
+    .line 539
+    iget-object v4, p0, Lquack/mc/patocraft/MainActivity;->textInputWidget:Lquack/mc/patocraft/TextInputProxyEditTextbox;
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$6;
+
+    invoke-direct {v5, p0}, Lquack/mc/patocraft/MainActivity$6;-><init>(Lquack/mc/patocraft/MainActivity;)V
+
+    const-wide/16 v6, 0xc8
+
+    invoke-virtual {v4, v5, v6, v7}, Lquack/mc/patocraft/TextInputProxyEditTextbox;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 552
+    const v4, 0x1020002
+
+    invoke-virtual {p0, v4}, Lquack/mc/patocraft/MainActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Landroid/view/View;->getRootView()Landroid/view/View;
+
+    move-result-object v0
+
+    .line 553
+    .local v0, "activityRootView":Landroid/view/View;
+    invoke-virtual {v0}, Landroid/view/View;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
+
+    move-result-object v4
+
+    new-instance v5, Lquack/mc/patocraft/MainActivity$7;
+
+    invoke-direct {v5, p0, v0}, Lquack/mc/patocraft/MainActivity$7;-><init>(Lquack/mc/patocraft/MainActivity;Landroid/view/View;)V
+
+    invoke-virtual {v4, v5}, Landroid/view/ViewTreeObserver;->addOnGlobalLayoutListener(Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;)V
+
+    .line 562
+    return-void
+.end method
+
+.method public share(Ljava/lang/String;)V
+    .locals 2
+    .param p1, "value"    # Ljava/lang/String;
+
+    .prologue
+    .line 176
+    new-instance v0, Landroid/content/Intent;
+
+    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
+
+    .line 177
+    .local v0, "sendIntent":Landroid/content/Intent;
+    const-string v1, "android.intent.action.SEND"
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 178
+    const-string v1, "android.intent.extra.TEXT"
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 179
+    const-string v1, "text/plain"
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->setType(Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 180
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->startActivity(Landroid/content/Intent;)V
+
+    .line 181
+    return-void
+.end method
+
+.method public showKeyboard(Ljava/lang/String;IZZ)V
+    .locals 6
+    .param p1, "text"    # Ljava/lang/String;
+    .param p2, "maxLength"    # I
+    .param p3, "limitInput"    # Z
+    .param p4, "numbersOnly"    # Z
+
+    .prologue
+    .line 580
+    move-object v2, p1
+
+    .line 581
+    .local v2, "startText":Ljava/lang/String;
+    move v3, p2
+
+    .line 582
+    .local v3, "fMaxLength":I
+    move v4, p3
+
+    .line 583
+    .local v4, "fLimitInput":Z
+    move v5, p4
+
+    .line 585
+    .local v5, "fNumbersOnly":Z
+    new-instance v0, Lquack/mc/patocraft/MainActivity$9;
+
+    move-object v1, p0
+
+    invoke-direct/range {v0 .. v5}, Lquack/mc/patocraft/MainActivity$9;-><init>(Lquack/mc/patocraft/MainActivity;Ljava/lang/String;IZZ)V
+
+    invoke-virtual {p0, v0}, Lquack/mc/patocraft/MainActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 589
+    return-void
+.end method
+
+.method public startTextToSpeech(Ljava/lang/String;)V
+    .locals 3
+    .param p1, "s"    # Ljava/lang/String;
+
+    .prologue
+    .line 1489
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    if-eqz v0, :cond_0
+
+    .line 1490
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    const/4 v1, 0x0
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, p1, v1, v2}, Landroid/speech/tts/TextToSpeech;->speak(Ljava/lang/String;ILjava/util/HashMap;)I
+
+    .line 1492
+    :cond_0
+    return-void
+.end method
+
+.method public statsTrackEvent(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 0
+    .param p1, "eventName"    # Ljava/lang/String;
+    .param p2, "eventParameters"    # Ljava/lang/String;
+
+    .prologue
+    .line 1047
+    return-void
+.end method
+
+.method public statsUpdateUserData(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 0
+    .param p1, "graphicsVendor"    # Ljava/lang/String;
+    .param p2, "graphicsRenderer"    # Ljava/lang/String;
+
+    .prologue
+    .line 1082
+    return-void
+.end method
+
+.method public stopTextToSpeech()V
+    .locals 1
+
+    .prologue
+    .line 1495
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    if-eqz v0, :cond_0
+
+    .line 1496
+    iget-object v0, p0, Lquack/mc/patocraft/MainActivity;->textToSpeechManager:Landroid/speech/tts/TextToSpeech;
+
+    invoke-virtual {v0}, Landroid/speech/tts/TextToSpeech;->stop()I
+
+    .line 1498
+    :cond_0
+    return-void
+.end method
+
+.method public tick()V
+    .locals 0
+
+    .prologue
+    .line 949
+    return-void
+.end method
+
+.method public trackPurchaseEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    .locals 4
+    .param p1, "contentId"    # Ljava/lang/String;
+    .param p2, "contentType"    # Ljava/lang/String;
+    .param p3, "revenue"    # Ljava/lang/String;
+    .param p4, "playerId"    # Ljava/lang/String;
+    .param p5, "playerSessionId"    # Ljava/lang/String;
+    .param p6, "currencyCode"    # Ljava/lang/String;
+
+    .prologue
+    .line 195
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    .line 196
+    .local v0, "eventValue":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
+    const-string v1, "player_session_id"
+
+    invoke-interface {v0, v1, p5}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 197
+    const-string v1, "client_id"
+
+    invoke-interface {v0, v1, p4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 198
+    const-string v1, "af_revenue"
+
+    invoke-interface {v0, v1, p3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 199
+    const-string v1, "af_content_type"
+
+    invoke-interface {v0, v1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 200
+    const-string v1, "af_content_id"
+
+    invoke-interface {v0, v1, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 201
+    const-string v1, "af_currency"
+
+    invoke-interface {v0, v1, p6}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 202
+    invoke-static {}, Lcom/appsflyer/AppsFlyerLib;->getInstance()Lcom/appsflyer/AppsFlyerLib;
+
+    move-result-object v1
+
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    const-string v3, "af_purchase"
+
+    invoke-virtual {v1, v2, v3, v0}, Lcom/appsflyer/AppsFlyerLib;->trackEvent(Landroid/content/Context;Ljava/lang/String;Ljava/util/Map;)V
+
+    .line 203
+    return-void
+.end method
+
+.method public unpackMonoAssemblies()Z
+    .locals 6
+
+    .prologue
+    .line 764
+    :try_start_0
+    invoke-virtual {p0}, Lquack/mc/patocraft/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 765
+    .local v0, "context":Landroid/content/Context;
+    invoke-virtual {v0}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 767
+    .local v2, "filesDir":Ljava/lang/String;
+    const-string v3, "MONO"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "copy all DLLs to \""
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    const-string v5, "\""
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 768
+    new-instance v3, Ljava/io/File;
+
+    invoke-direct {v3, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v3}, Ljava/io/File;->mkdir()Z
+
+    .line 769
+    invoke-virtual {v0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+
+    move-result-object v3
+
+    const-string v4, "mono"
+
+    invoke-static {v3, v4, v2}, Lquack/mc/patocraft/MainActivity;->copyAssetDir(Landroid/content/res/AssetManager;Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 774
+    const-string v3, "MONO"
+
+    const-string v4, "unpacking success :-)"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 775
+    const/4 v3, 0x1
+
+    .end local v0    # "context":Landroid/content/Context;
+    .end local v2    # "filesDir":Ljava/lang/String;
+    :goto_0
+    return v3
+
+    .line 770
+    :catch_0
+    move-exception v1
+
+    .line 771
+    .local v1, "e":Ljava/lang/Exception;
+    const-string v3, "MONO"
+
+    const-string v4, "unpacking failed :-("
+
+    invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 772
+    const/4 v3, 0x0
+
+    goto :goto_0
+.end method
+
+.method public updateLocalization(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 3
+    .param p1, "lang"    # Ljava/lang/String;
+    .param p2, "region"    # Ljava/lang/String;
+
+    .prologue
+    .line 565
+    move-object v0, p1
+
+    .line 566
+    .local v0, "langString":Ljava/lang/String;
+    move-object v1, p2
+
+    .line 567
+    .local v1, "regionString":Ljava/lang/String;
+    new-instance v2, Lquack/mc/patocraft/MainActivity$8;
+
+    invoke-direct {v2, p0, v0, v1}, Lquack/mc/patocraft/MainActivity$8;-><init>(Lquack/mc/patocraft/MainActivity;Ljava/lang/String;Ljava/lang/String;)V
+
+    invoke-virtual {p0, v2}, Lquack/mc/patocraft/MainActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 577
+    return-void
+.end method
+
+.method public updateTextboxText(Ljava/lang/String;)V
+    .locals 2
+    .param p1, "newText"    # Ljava/lang/String;
+
+    .prologue
+    .line 604
+    move-object v0, p1
+
+    .line 605
+    .local v0, "setText":Ljava/lang/String;
+    new-instance v1, Lquack/mc/patocraft/MainActivity$11;
+
+    invoke-direct {v1, p0, v0}, Lquack/mc/patocraft/MainActivity$11;-><init>(Lquack/mc/patocraft/MainActivity;Ljava/lang/String;)V
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    .line 618
+    return-void
+.end method
+
+.method public vibrate(I)V
+    .locals 4
+    .param p1, "milliSeconds"    # I
+
+    .prologue
+    .line 1142
+    const-string v1, "vibrator"
+
+    invoke-virtual {p0, v1}, Lquack/mc/patocraft/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/os/Vibrator;
+
+    .line 1143
+    .local v0, "v":Landroid/os/Vibrator;
+    int-to-long v2, p1
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Vibrator;->vibrate(J)V
+
+    .line 1144
+    return-void
+.end method

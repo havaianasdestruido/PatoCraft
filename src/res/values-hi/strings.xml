@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">एक खाता जोड़ें</string>
+    <string name="account_picker_list_body">आप इस एप्लिकेशन से किस खाते में साइन इन करना चाहते हैं?</string>
+    <string name="account_picker_list_header">एक चुनें</string>
+    <string name="account_picker_menu_dismiss">बंद करें</string>
+    <string name="account_setting_up">हमारे द्वारा आपका खाता जोड़ने की प्रक्रिया समाप्त होने तक, कृपया प्रतीक्षा करें.</string>
+    <string name="account_setting_up_header">आपका कार्य लगभग पूरा हो चुका है</string>
+    <string name="app_market">hi</string>
+    <string name="authentication_button_finish">समाप्त करें</string>
+    <string name="authentication_button_next">आगे जाएँ</string>
+    <string name="authentication_button_previous">पीछे जाएँ</string>
+    <string name="error_body_generic_failure">कृपया पुनः प्रयास करें.</string>
+    <string name="error_header_generic_failure">कुछ गलत हुआ</string>
+    <string name="error_header_server_network_error">हमें सर्वर से कनेक्ट करने में समस्याएँ हो रही हैं</string>
+    <string name="error_overlay_no_network">आपके पास कोई इंटरनेट कनेक्शन नहीं है</string>
+    <string name="sign_out_dialog_button_cancel">रद्द करें</string>
+    <string name="sign_out_dialog_button_sign_out">साइन आउट करें</string>
+    <string name="sign_out_dialog_checkbox">%1$s का उपयोग करके सभी Microsoft एप्लिकेशन से साइन आउट करें</string>
+    <string name="sign_out_dialog_title">क्या आप इस एप्लिकेशन से साइन आउट करना चाहते हैं?</string>
+    <string name="user_tile_image_content_description">उपयोगकर्ता की छवि.</string>
+    <string name="webflow_header">Microsoft खाता</string>
+</resources>

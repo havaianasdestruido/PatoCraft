@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Een account toevoegen</string>
+    <string name="account_picker_list_body">Met welk account wil je je aanmelden bij deze app?</string>
+    <string name="account_picker_list_header">Kies een optie</string>
+    <string name="account_picker_menu_dismiss">Sluiten</string>
+    <string name="account_setting_up">Even geduld, je account wordt toegevoegd.</string>
+    <string name="account_setting_up_header">Je bent bijna klaar</string>
+    <string name="app_market">nl</string>
+    <string name="authentication_button_finish">voltooien</string>
+    <string name="authentication_button_next">volgende</string>
+    <string name="authentication_button_previous">vorige</string>
+    <string name="error_body_generic_failure">Probeer het opnieuw.</string>
+    <string name="error_header_generic_failure">Er is iets fout gegaan</string>
+    <string name="error_header_server_network_error">Er zijn problemen bij het verbinding maken met de server</string>
+    <string name="error_overlay_no_network">Je hebt geen internetverbinding</string>
+    <string name="sign_out_dialog_button_cancel">Annuleren</string>
+    <string name="sign_out_dialog_button_sign_out">Afmelden</string>
+    <string name="sign_out_dialog_checkbox">Afmelden bij alle Microsoft-apps die gebruikmaken van %1$s</string>
+    <string name="sign_out_dialog_title">Wil je je afmelden bij deze app?</string>
+    <string name="user_tile_image_content_description">Afbeelding van de gebruiker.</string>
+    <string name="webflow_header">Microsoft-account</string>
+</resources>

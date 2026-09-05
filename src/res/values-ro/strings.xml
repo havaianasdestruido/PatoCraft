@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Adăugați un cont</string>
+    <string name="account_picker_list_body">Cu ce cont doriți să vă conectați la această aplicație?</string>
+    <string name="account_picker_list_header">Alegeți unul</string>
+    <string name="account_picker_menu_dismiss">Închidere</string>
+    <string name="account_setting_up">Așteptați cât timp terminăm adăugarea contului dvs.</string>
+    <string name="account_setting_up_header">Sunteți aproape gata.</string>
+    <string name="app_market">ro</string>
+    <string name="authentication_button_finish">terminare</string>
+    <string name="authentication_button_next">înainte</string>
+    <string name="authentication_button_previous">înapoi</string>
+    <string name="error_body_generic_failure">Încercați din nou.</string>
+    <string name="error_header_generic_failure">Ceva nu a mers bine</string>
+    <string name="error_header_server_network_error">Avem probleme cu conectarea la server</string>
+    <string name="error_overlay_no_network">Nu aveți o conexiune la internet</string>
+    <string name="sign_out_dialog_button_cancel">Anulare</string>
+    <string name="sign_out_dialog_button_sign_out">Deconectare</string>
+    <string name="sign_out_dialog_checkbox">Deconectați-vă de la toate aplicațiile Microsoft care folosesc %1$s</string>
+    <string name="sign_out_dialog_title">Vă deconectați de la această aplicație?</string>
+    <string name="user_tile_image_content_description">Imaginea utilizatorului.</string>
+    <string name="webflow_header">Cont Microsoft</string>
+</resources>

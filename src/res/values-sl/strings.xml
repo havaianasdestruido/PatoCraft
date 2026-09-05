@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Dodaj račun</string>
+    <string name="account_picker_list_body">S katerim računom se želite vpisati v ta program?</string>
+    <string name="account_picker_list_header">Izberite enega</string>
+    <string name="account_picker_menu_dismiss">Zapri</string>
+    <string name="account_setting_up">Počakajte, da dokončamo dodajanje vašega računa.</string>
+    <string name="account_setting_up_header">Postopek bo kmalu končan</string>
+    <string name="app_market">sl</string>
+    <string name="authentication_button_finish">dokončaj</string>
+    <string name="authentication_button_next">naprej</string>
+    <string name="authentication_button_previous">nazaj</string>
+    <string name="error_body_generic_failure">Poskusite znova.</string>
+    <string name="error_header_generic_failure">Nekaj je šlo narobe</string>
+    <string name="error_header_server_network_error">Pri vzpostavljanju povezave s strežnikom prihaja do težav</string>
+    <string name="error_overlay_no_network">Nimate internetne povezave</string>
+    <string name="sign_out_dialog_button_cancel">Prekliči</string>
+    <string name="sign_out_dialog_button_sign_out">Izpis</string>
+    <string name="sign_out_dialog_checkbox">Izpiši me iz vseh Microsoftovih programov, ki uporabljajo račun %1$s</string>
+    <string name="sign_out_dialog_title">Ali se želite izpisati iz tega programa?</string>
+    <string name="user_tile_image_content_description">Uporabnikova slika.</string>
+    <string name="webflow_header">Microsoftov račun</string>
+</resources>

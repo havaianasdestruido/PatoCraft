@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Tilføj en konto</string>
+    <string name="account_picker_list_body">Hvilken konto vil du bruge, når du logger på denne app?</string>
+    <string name="account_picker_list_header">Vælg en</string>
+    <string name="account_picker_menu_dismiss">Luk</string>
+    <string name="account_setting_up">Vent, mens vi færdiggør tilføjelsen af din konto.</string>
+    <string name="account_setting_up_header">Du er næsten færdig</string>
+    <string name="app_market">da</string>
+    <string name="authentication_button_finish">udfør</string>
+    <string name="authentication_button_next">næste</string>
+    <string name="authentication_button_previous">forrige</string>
+    <string name="error_body_generic_failure">Prøv igen.</string>
+    <string name="error_header_generic_failure">Noget gik galt</string>
+    <string name="error_header_server_network_error">Vi har problemer med at oprette forbindelse til serveren</string>
+    <string name="error_overlay_no_network">Du har ikke forbindelse til internettet</string>
+    <string name="sign_out_dialog_button_cancel">Annuller</string>
+    <string name="sign_out_dialog_button_sign_out">Log af</string>
+    <string name="sign_out_dialog_checkbox">Log af alle Microsoft-apps, der bruger %1$s</string>
+    <string name="sign_out_dialog_title">Vil du logge af denne app?</string>
+    <string name="user_tile_image_content_description">Brugerens billede.</string>
+    <string name="webflow_header">Microsoft-konto</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">הוסף חשבון</string>
+    <string name="account_picker_list_body">באמצעות איזה חשבון ברצונך להיכנס לאפליקציה זו?</string>
+    <string name="account_picker_list_header">בחר</string>
+    <string name="account_picker_menu_dismiss">סגור</string>
+    <string name="account_setting_up">נא המתן בזמן שאנו מסיימים להוסיף את החשבון שלך.</string>
+    <string name="account_setting_up_header">כמעט סיימת</string>
+    <string name="app_market">he</string>
+    <string name="authentication_button_finish">סיום</string>
+    <string name="authentication_button_next">הבא</string>
+    <string name="authentication_button_previous">הקודם</string>
+    <string name="error_body_generic_failure">נסה שוב.</string>
+    <string name="error_header_generic_failure">משהו השתבש</string>
+    <string name="error_header_server_network_error">אנו נתקלים בבעיות בהתחברות לשרת</string>
+    <string name="error_overlay_no_network">אין לך חיבור לאינטרנט</string>
+    <string name="sign_out_dialog_button_cancel">ביטול</string>
+    <string name="sign_out_dialog_button_sign_out">צא</string>
+    <string name="sign_out_dialog_checkbox">צא מכל האפליקציות של Microsoft המשתמשות ב- %1$s</string>
+    <string name="sign_out_dialog_title">האם ברצונך לצאת מאפליקציה זו?</string>
+    <string name="user_tile_image_content_description">תמונת המשתמש.</string>
+    <string name="webflow_header">חשבון Microsoft</string>
+</resources>

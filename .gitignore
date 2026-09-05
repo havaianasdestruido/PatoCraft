@@ -1,17 +1,8 @@
 # Build outputs
 dist/
 build/
-apktool.yml
 
-# Original APK (binary)
-src/original/
-
-# Decompilation artifacts
-src/unknown/
-src/android/
-src/dist/
-
-# Tools (not source)
+# Tools (external dependencies)
 tools/
 
 # IDE
@@ -23,19 +14,16 @@ tools/
 .DS_Store
 Thumbs.db
 
-# Java
-*.class
-*.jar
-*.war
-
 # Logs
 *.log
 
-# Keep smali source and res (these ARE the source)
-!src/smali/
-!src/res/
-!src/AndroidManifest.xml
-!src/apktool.yml
+# Compiled / signed outputs
+*.apk
+*.keystore
 
-# Keep native libs
-!src/lib/
+# APK build metadata (regenerated on build)
+apktool.yml
+src/original/
+src/unknown/
+src/android/
+src/dist/

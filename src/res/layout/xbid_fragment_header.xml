@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@color/xbid_header_background" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="40.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.microsoft.xbox.idp.toolkit.CircleImageView android:layout_gravity="center_vertical" android:id="@id/xbid_user_image" android:layout_width="@dimen/xbid_header_image_diameter" android:layout_height="@dimen/xbid_header_image_diameter" android:layout_margin="5.0dp" />
+    <View android:layout_gravity="center_vertical" android:layout_width="0.0dp" android:layout_height="@dimen/xbid_header_image_diameter" android:layout_marginTop="5.0dp" android:layout_marginBottom="5.0dp" />
+    <LinearLayout android:layout_gravity="center_vertical" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dp">
+        <TextView android:id="@id/xbid_user_name" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/Header.UserName" />
+        <TextView android:id="@id/xbid_user_email" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/Header.Email" />
+    </LinearLayout>
+    <View android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_weight="1.0" />
+    <ImageView android:textColor="@android:color/white" android:layout_gravity="center_vertical" android:id="@id/xbid_close" android:background="@drawable/xbid_clickable_view_background" android:padding="@dimen/xbid_clickable_view_padding" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dp" android:src="@drawable/xbid_x_icon" android:contentDescription="@string/xbid_voice_over_close_button_text" />
+</LinearLayout>

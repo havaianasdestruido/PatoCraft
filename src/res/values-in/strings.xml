@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Tambahkan satu akun</string>
+    <string name="account_picker_list_body">Anda ingin masuk ke aplikasi ini dengan akun yang mana?</string>
+    <string name="account_picker_list_header">Pilih salah satu</string>
+    <string name="account_picker_menu_dismiss">Tutup</string>
+    <string name="account_setting_up">Harap tunggu sementara kami menyelesaikan penambahan akun Anda.</string>
+    <string name="account_setting_up_header">Anda hampir selesai</string>
+    <string name="app_market">id</string>
+    <string name="authentication_button_finish">selesai</string>
+    <string name="authentication_button_next">berikutnya</string>
+    <string name="authentication_button_previous">sebelumnya</string>
+    <string name="error_body_generic_failure">Coba lagi.</string>
+    <string name="error_header_generic_failure">Terjadi kesalahan</string>
+    <string name="error_header_server_network_error">Terjadi masalah untuk menyambungkan ke server</string>
+    <string name="error_overlay_no_network">Anda tidak terhubung dengan internet</string>
+    <string name="sign_out_dialog_button_cancel">Batal</string>
+    <string name="sign_out_dialog_button_sign_out">Keluar</string>
+    <string name="sign_out_dialog_checkbox">Keluar dari semua aplikasi Microsoft menggunakan %1$s</string>
+    <string name="sign_out_dialog_title">Apakah Anda ingin keluar dari aplikasi ini?</string>
+    <string name="user_tile_image_content_description">Gambar pengguna.</string>
+    <string name="webflow_header">Akun Microsoft</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">アカウントの追加</string>
+    <string name="account_picker_list_body">どのアカウントを使ってこのアプリにサインインしますか?</string>
+    <string name="account_picker_list_header">1 つを選択</string>
+    <string name="account_picker_menu_dismiss">閉じる</string>
+    <string name="account_setting_up">アカウントを追加しています。しばらくお待ちください。</string>
+    <string name="account_setting_up_header">もうすぐ完了します。</string>
+    <string name="app_market">ja</string>
+    <string name="authentication_button_finish">完了</string>
+    <string name="authentication_button_next">次へ</string>
+    <string name="authentication_button_previous">前へ</string>
+    <string name="error_body_generic_failure">もう一度やり直してください。</string>
+    <string name="error_header_generic_failure">エラーが発生しました</string>
+    <string name="error_header_server_network_error">サーバーに接続するときに問題が発生しています。</string>
+    <string name="error_overlay_no_network">インターネットに接続されていません</string>
+    <string name="sign_out_dialog_button_cancel">キャンセル</string>
+    <string name="sign_out_dialog_button_sign_out">サインアウト</string>
+    <string name="sign_out_dialog_checkbox">%1$s を使ったすべての Microsoft アプリからサインアウト</string>
+    <string name="sign_out_dialog_title">このアプリからサインアウトしますか?</string>
+    <string name="user_tile_image_content_description">ユーザーの画像です。</string>
+    <string name="webflow_header">Microsoft アカウント</string>
+</resources>
