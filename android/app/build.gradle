@@ -53,6 +53,20 @@ android {
         checkReleaseBuilds false
     }
     
+    signingConfigs {
+        release {
+            def props = new Properties()
+            def propsFile = rootProject.file('keystore.properties')
+            if (propsFile.exists()) {
+                propsFile.withInputStream { props.load(it) }
+                storeFile rootProject.file(props.getProperty('storeFile'))
+                storePassword props.getProperty('storePassword')
+                keyAlias props.getProperty('keyAlias')
+                keyPassword props.getProperty('keyPassword')
+            }
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -60,7 +74,7 @@ android {
         }
         release {
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            signingConfig rootProject.file('keystore.properties').exists() ? signingConfigs.release : signingConfigs.debug
         }
     }
 }

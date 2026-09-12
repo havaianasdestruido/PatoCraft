@@ -20,6 +20,8 @@ Thumbs.db
 # Compiled / signed outputs
 *.apk
 *.keystore
+*.jks
+keystore.properties
 
 # APK build metadata (regenerated on build)
 apktool.yml

@@ -5,12 +5,12 @@
 Gradle (AGP 8.7.3 + Gradle 8.9 + JDK 17) now produces both debug and release APKs for PatoCraft (quack.mc.patocraft, versionName 1.2.5.12). Resource packaging (AAPT2), manifest merge, DEX, packaging, and signing all pass.
 
 - Debug: `android/app/build/outputs/apk/debug/app-debug.apk` (~61 MB)
-- Release: `android/app/build/outputs/apk/release/app-release.apk` (~59 MB, signed with debug keystore)
+- Release: `android/app/build/outputs/apk/release/app-release.apk` (~59 MB, signed with **PatoCraft keystore**, v1+v2)
 
 ## Open items
 
-- [ ] Install/launch smoke test on a device (surface, natives, audio, input). The missing-class stubs (StringValue, Platform, InputDeviceManager, GcmListenerService, hockeyapp/appsflyer/facebook/microsoft compat shims) are compile-only and are the highest runtime risk.
-- [ ] Real signing config for release (currently `signingConfigs.debug`).
+- [ ] Install/launch smoke test on a device — the missing-class stubs (StringValue, Platform, InputDeviceManager, GcmListenerService, hockeyapp/appsflyer/facebook/microsoft compat shims) are compile-only and are the highest runtime risk.
+- [ ] Manual test of: game boot, touch input, audio, MCWORLD/MCPACK file-open intents, in-game Xbox/Shop buttons (expected to no-op or crash-lite after stub exclusions).
 - [ ] jadx`ed non-vendor framework trees that were excluded to reach green build are documented below; nothing in the game native path depends on them.
 
 ## Excluded trees (compile only — retained in repo, excluded via sourceSets)
@@ -63,3 +63,35 @@ Minimal, no-op, compile-only stand-ins matching the exact surface used by game c
 
 - Resource `xbid_welcome_to_xbox` removed without default value (duplicate-class check warning).
 - `StyledTextView` `obtainStyledAttributes` styleable mismatch on com.microsoft.onlineid.sdk — silently no-ops.
+
+## Release signing
+
+- Key: `android/keystore/patocraft.jks` (local only, gitignored), alias `patocraft`, pass stored in `android/keystore.properties` (gitignored).
+- Gradle falls back to `signingConfigs.debug` when `keystore.properties` is absent, so clones build out of the box.
+- Manual re-sign: `scripts/sign.bat <apk>` (apksigner + debug keystore).
+
+## Manifest after core-only exclusion
+
+Original 24 vendor components removed from `AndroidManifest.xml` (their classes are excluded from the compile/DEX; leaving them would crash on use):
+
+- All `com.microsoft.onlineid.*` (MSA webflow, SSO services/activities)
+- `com.microsoft.xbox.idp.*` (Xbox auth flow, GCM registration)
+- `com.microsoft.xboxtcui.*` (FB share/login shims)
+- `com.facebook.FacebookActivity`
+- `com.appsflyer.SingleInstallBroadcastReceiver`
+- `com.amazon.device.iap.ResponseReceiver`
+- `com.google.android.gms.gcm.GcmReceiver`
+
+Kept: `MainActivity` (launcher), `NotificationListenerService` (extends GcmListenerService compat stub), core meta-data. `meta-data com.facebook.sdk.ApplicationId` / `hockeyapp.android.appIdentifier` / `com.microsoft.onlineid` sdk references removed with them.
+
+## Device smoke test
+
+No device attached during the build session. Manual steps once a device (or emulator) is wired:
+
+```
+adb install -r android/app/build/outputs/apk/release/app-release.apk
+adb shell am start -n quack.mc.patocraft/quack.mc.patocraft.MainActivity
+adb logcat -s MCPE AndroidRuntime
+```
+
+Note: `armeabi-v7a` only — recent handsets without 32-bit runtime support will fail to load `libminecraftpe.so`.
