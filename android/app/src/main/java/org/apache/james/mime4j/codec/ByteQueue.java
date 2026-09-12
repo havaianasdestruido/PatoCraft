@@ -1,0 +1,45 @@
+package org.apache.james.mime4j.codec;
+
+import java.util.Iterator;
+
+/* JADX INFO: loaded from: C:\Users\mcmco\Desktop\patocraft\build\dex\classes.dex */
+public class ByteQueue implements Iterable<Byte> {
+    private UnboundedFifoByteBuffer buf;
+    private int initialCapacity;
+
+    public ByteQueue() {
+        this.initialCapacity = -1;
+        this.buf = new UnboundedFifoByteBuffer();
+    }
+
+    public ByteQueue(int initialCapacity) {
+        this.initialCapacity = -1;
+        this.buf = new UnboundedFifoByteBuffer(initialCapacity);
+        this.initialCapacity = initialCapacity;
+    }
+
+    public void enqueue(byte b) {
+        this.buf.add(b);
+    }
+
+    public byte dequeue() {
+        return this.buf.remove();
+    }
+
+    public int count() {
+        return this.buf.size();
+    }
+
+    public void clear() {
+        if (this.initialCapacity != -1) {
+            this.buf = new UnboundedFifoByteBuffer(this.initialCapacity);
+        } else {
+            this.buf = new UnboundedFifoByteBuffer();
+        }
+    }
+
+    @Override // java.lang.Iterable
+    public Iterator<Byte> iterator() {
+        return this.buf.iterator();
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Προσθήκη λογαριασμού</string>
+    <string name="account_picker_list_body">Με ποιο λογαριασμό θέλετε να γίνει είσοδος στην εφαρμογή;</string>
+    <string name="account_picker_list_header">Επιλέξτε ένα</string>
+    <string name="account_picker_menu_dismiss">Κλείσιμο</string>
+    <string name="account_setting_up">Περιμένετε έως ότου ολοκληρωθεί η προσθήκη του λογαριασμού σας.</string>
+    <string name="account_setting_up_header">Είστε σχεδόν έτοιμοι</string>
+    <string name="app_market">el</string>
+    <string name="authentication_button_finish">τέλος</string>
+    <string name="authentication_button_next">επόμενο</string>
+    <string name="authentication_button_previous">προηγούμενο</string>
+    <string name="error_body_generic_failure">Δοκιμάστε ξανά.</string>
+    <string name="error_header_generic_failure">Παρουσιάστηκε κάποιο σφάλμα</string>
+    <string name="error_header_server_network_error">Αντιμετωπίζουμε προβλήματα με τη σύνδεση στο διακομιστή</string>
+    <string name="error_overlay_no_network">Δεν έχετε σύνδεση στο Internet</string>
+    <string name="sign_out_dialog_button_cancel">Άκυρο</string>
+    <string name="sign_out_dialog_button_sign_out">Έξοδος</string>
+    <string name="sign_out_dialog_checkbox">Έξοδος από όλες τις εφαρμογές Microsoft που χρησιμοποιούν το λογαριασμό %1$s</string>
+    <string name="sign_out_dialog_title">Θέλετε να γίνει έξοδος από αυτήν την εφαρμογή;</string>
+    <string name="user_tile_image_content_description">Η εικόνα του χρήστη.</string>
+    <string name="webflow_header">Λογαριασμός Microsoft</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Dodavanje računa</string>
+    <string name="account_picker_list_body">Pomoću kojeg se računa želite prijaviti u aplikaciju?</string>
+    <string name="account_picker_list_header">Odaberite jedan</string>
+    <string name="account_picker_menu_dismiss">Zatvori</string>
+    <string name="account_setting_up">Pričekajte da dovršimo dodavanje vašeg računa.</string>
+    <string name="account_setting_up_header">Još samo malo</string>
+    <string name="app_market">hr</string>
+    <string name="authentication_button_finish">završi</string>
+    <string name="authentication_button_next">dalje</string>
+    <string name="authentication_button_previous">prethodno</string>
+    <string name="error_body_generic_failure">Pokušajte ponovno.</string>
+    <string name="error_header_generic_failure">Nešto nije u redu</string>
+    <string name="error_header_server_network_error">Imamo problema s povezivanjem s poslužiteljem</string>
+    <string name="error_overlay_no_network">Nemate internetsku vezu</string>
+    <string name="sign_out_dialog_button_cancel">Odustani</string>
+    <string name="sign_out_dialog_button_sign_out">Odjava</string>
+    <string name="sign_out_dialog_checkbox">Odjavite se iz svih Microsoftovih aplikacija putem računa %1$s</string>
+    <string name="sign_out_dialog_title">Želite li se odjaviti iz ove aplikacije?</string>
+    <string name="user_tile_image_content_description">Korisnikova slika.</string>
+    <string name="webflow_header">Microsoftov račun</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.microsoft.xbox.xle.ui.XLERootView android:padding="@dimen/friendFinderPageMargin" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.microsoft.xbox.toolkit.ui.XLEButton android:id="@id/friendfinder_info_next" android:layout_width="250.0dp" android:layout_height="wrap_content" android:text="@string/FriendFinder_Phone_Next_ButtonText" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" style="@style/friendfinder_button" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/friendfinder_info_next">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:id="@id/friendfinder_info_title" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FriendFinder_Title" />
+            <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:id="@id/friendfinder_info_subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" style="@style/standard_text" />
+        </LinearLayout>
+    </ScrollView>
+</com.microsoft.xbox.xle.ui.XLERootView>

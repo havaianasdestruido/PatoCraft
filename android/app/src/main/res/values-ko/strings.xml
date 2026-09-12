@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">계정 추가</string>
+    <string name="account_picker_list_body">이 앱에 어떤 계정을 사용하여 로그인할까요?</string>
+    <string name="account_picker_list_header">하나를 선택</string>
+    <string name="account_picker_menu_dismiss">닫기</string>
+    <string name="account_setting_up">Please wait while we finish adding your account.</string>
+    <string name="account_setting_up_header">거의 완료되었습니다.</string>
+    <string name="app_market">ko</string>
+    <string name="authentication_button_finish">마침</string>
+    <string name="authentication_button_next">다음</string>
+    <string name="authentication_button_previous">이전</string>
+    <string name="error_body_generic_failure">다시 시도해 보세요.</string>
+    <string name="error_header_generic_failure">오류 발생</string>
+    <string name="error_header_server_network_error">서버에 연결하는 데 문제가 있습니다.</string>
+    <string name="error_overlay_no_network">인터넷에 연결되어 있지 않습니다.</string>
+    <string name="sign_out_dialog_button_cancel">취소</string>
+    <string name="sign_out_dialog_button_sign_out">로그아웃</string>
+    <string name="sign_out_dialog_checkbox">%1$s을(를) 사용하여 모든 Microsoft 앱에서 로그아웃</string>
+    <string name="sign_out_dialog_title">이 앱에서 로그아웃할까요?</string>
+    <string name="user_tile_image_content_description">사용자의 이미지입니다.</string>
+    <string name="webflow_header">Microsoft 계정</string>
+</resources>

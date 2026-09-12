@@ -27,3 +27,9 @@ src/original/
 src/unknown/
 src/android/
 src/dist/
+
+# Gradle (machine-specific / caches)
+.gradle/
+local.properties
+captures/
+*.tmp

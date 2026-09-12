@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.microsoft.xbox.toolkit.ui.XLEUniversalImageView android:layout_gravity="center" android:id="@id/image_title_subtitle_button_image" android:layout_width="@dimen/friendFinderIconButtonWidth" android:layout_height="@dimen/friendFinderIconButtonHeight" />
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="@dimen/friendFinderIconButtonHeight" android:layout_marginLeft="@dimen/friendFinderPageMargin" android:layout_marginTop="2.0dp">
+        <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="18.0sp" android:id="@id/image_title_subtitle_button_title" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/SUI_white" />
+        <com.microsoft.xbox.toolkit.ui.CustomTypefaceTextView android:textSize="15.0sp" android:id="@id/image_title_subtitle_button_subtitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" style="@style/SUI_base" />
+    </LinearLayout>
+</merge>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Lägg till konto</string>
+    <string name="account_picker_list_body">Vilket konto vill du logga in i appen med?</string>
+    <string name="account_picker_list_header">Välj ett</string>
+    <string name="account_picker_menu_dismiss">Stäng</string>
+    <string name="account_setting_up">Vänta medan vi lägger till ditt konto.</string>
+    <string name="account_setting_up_header">Nästan klart</string>
+    <string name="app_market">sv</string>
+    <string name="authentication_button_finish">slutför</string>
+    <string name="authentication_button_next">nästa</string>
+    <string name="authentication_button_previous">föregående</string>
+    <string name="error_body_generic_failure">Försök igen.</string>
+    <string name="error_header_generic_failure">Ett fel uppstod</string>
+    <string name="error_header_server_network_error">Problem med att ansluta till servern</string>
+    <string name="error_overlay_no_network">Du har ingen Internetanslutning</string>
+    <string name="sign_out_dialog_button_cancel">Avbryt</string>
+    <string name="sign_out_dialog_button_sign_out">Logga ut</string>
+    <string name="sign_out_dialog_checkbox">Logga ut från alla Microsoft-appar som använder %1$s</string>
+    <string name="sign_out_dialog_title">Vill du logga ut från den här appen?</string>
+    <string name="user_tile_image_content_description">Användarens bild.</string>
+    <string name="webflow_header">Microsoft-konto</string>
+</resources>

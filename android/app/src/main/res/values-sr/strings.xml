@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Додај налог</string>
+    <string name="account_picker_list_body">Помоћу ког налога желите да се пријавите у ову апликацију?</string>
+    <string name="account_picker_list_header">Одаберите један</string>
+    <string name="account_picker_menu_dismiss">Затвори</string>
+    <string name="account_setting_up">Сачекајте док не завршимо додавање налога.</string>
+    <string name="account_setting_up_header">Скоро сте завршили</string>
+    <string name="app_market">sr-cyrl-rs</string>
+    <string name="authentication_button_finish">заврши</string>
+    <string name="authentication_button_next">следеће</string>
+    <string name="authentication_button_previous">претходно</string>
+    <string name="error_body_generic_failure">Покушајте поново.</string>
+    <string name="error_header_generic_failure">Нешто није у реду</string>
+    <string name="error_header_server_network_error">Имамо проблема са повезивањем са сервером</string>
+    <string name="error_overlay_no_network">Немате интернет везу</string>
+    <string name="sign_out_dialog_button_cancel">Откажи</string>
+    <string name="sign_out_dialog_button_sign_out">Одјави се</string>
+    <string name="sign_out_dialog_checkbox">Одјави ме из свих Microsoft апликација које користим са налогом %1$s</string>
+    <string name="sign_out_dialog_title">Желите ли да се одјавите из ове апликације?</string>
+    <string name="user_tile_image_content_description">Слика корисника.</string>
+    <string name="webflow_header">Microsoft налог</string>
+</resources>

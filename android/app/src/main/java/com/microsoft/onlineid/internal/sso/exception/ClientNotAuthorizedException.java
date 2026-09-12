@@ -1,0 +1,12 @@
+package com.microsoft.onlineid.internal.sso.exception;
+
+import com.microsoft.onlineid.exception.InternalException;
+
+/* JADX INFO: loaded from: C:\Users\mcmco\Desktop\patocraft\build\dex\classes.dex */
+public class ClientNotAuthorizedException extends InternalException {
+    private static final long serialVersionUID = 1;
+
+    public ClientNotAuthorizedException(String message) {
+        super(message);
+    }
+}

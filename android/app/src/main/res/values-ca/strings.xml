@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Afegeix un compte</string>
+    <string name="account_picker_list_body">Amb quin compte vols iniciar la sessió en aquesta aplicació?</string>
+    <string name="account_picker_list_header">"Tria'n un"</string>
+    <string name="account_picker_menu_dismiss">Tanca</string>
+    <string name="account_setting_up">"Espera mentre acabem d'afegir el compte."</string>
+    <string name="account_setting_up_header">Gairebé ja has acabat</string>
+    <string name="app_market">ca</string>
+    <string name="authentication_button_finish">finalitza</string>
+    <string name="authentication_button_next">següent</string>
+    <string name="authentication_button_previous">anterior</string>
+    <string name="error_body_generic_failure">Torna-ho a provar.</string>
+    <string name="error_header_generic_failure">"S'ha produït un error"</string>
+    <string name="error_header_server_network_error">Tenim problemes per connectar amb el servidor</string>
+    <string name="error_overlay_no_network">No tens connexió a Internet</string>
+    <string name="sign_out_dialog_button_cancel">Cancel·la</string>
+    <string name="sign_out_dialog_button_sign_out">Tanca la sessió</string>
+    <string name="sign_out_dialog_checkbox">Tanca la sessió a totes les aplicacions de Microsoft que fan servir %1$s</string>
+    <string name="sign_out_dialog_title">Vols tancar la sessió en aquesta aplicació?</string>
+    <string name="user_tile_image_content_description">"La imatge de l'usuari."</string>
+    <string name="webflow_header">Compte Microsoft</string>
+</resources>

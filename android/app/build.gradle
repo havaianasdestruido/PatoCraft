@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'quack.mc.patocraft'
+    compileSdkVersion 34
+        buildToolsVersion "34.0.0"
+    
+    defaultConfig {
+        applicationId "quack.mc.patocraft"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 871020512
+        versionName "1.2.5.12"
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            java.exclude 'android/support/**'
+            java.exclude 'bolts/**'
+            java.exclude 'com/appsflyer/**'
+            java.exclude 'com/facebook/**'
+            java.exclude 'com/google/**'
+            java.exclude 'com/googleplay/**'
+            java.exclude 'com/microsoft/**'
+            java.exclude 'Microsoft/**'
+            java.exclude 'Ms/**'
+            java.exclude 'net/hockeyapp/**'
+            java.exclude 'org/apache/**'
+            java.exclude 'org/simpleframework/**'
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+    
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+}

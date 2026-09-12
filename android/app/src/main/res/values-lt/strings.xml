@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_menu_add_account">Įtraukti abonementą</string>
+    <string name="account_picker_list_body">Kokį abonementą norite naudoti jungdamiesi prie šios programėlės?</string>
+    <string name="account_picker_list_header">Pasirinkite vieną</string>
+    <string name="account_picker_menu_dismiss">Uždaryti</string>
+    <string name="account_setting_up">Palaukite, kol baigsime įtraukti jūsų abonementą.</string>
+    <string name="account_setting_up_header">Beveik atlikta</string>
+    <string name="app_market">lt</string>
+    <string name="authentication_button_finish">baigti</string>
+    <string name="authentication_button_next">paskesnis</string>
+    <string name="authentication_button_previous">ankstesnis</string>
+    <string name="error_body_generic_failure">Bandykite dar kartą.</string>
+    <string name="error_header_generic_failure">Įvyko klaida</string>
+    <string name="error_header_server_network_error">Kilo problemų prisijungiant prie serverio</string>
+    <string name="error_overlay_no_network">Neturite ryšio su internetu</string>
+    <string name="sign_out_dialog_button_cancel">Atšaukti</string>
+    <string name="sign_out_dialog_button_sign_out">Atsijungti</string>
+    <string name="sign_out_dialog_checkbox">Atsijungti nuo visų „Microsoft“ programėlių, naudojant %1$s</string>
+    <string name="sign_out_dialog_title">Ar norite atsijungti nuo šios programėlės?</string>
+    <string name="user_tile_image_content_description">Vartotojo vaizdas.</string>
+    <string name="webflow_header">„Microsoft“ abonementas</string>
+</resources>

@@ -1,0 +1,12 @@
+package com.microsoft.onlineid.sdk;
+
+/* JADX INFO: loaded from: C:\Users\mcmco\Desktop\patocraft\build\dex\classes.dex */
+public final class BuildConfig {
+    public static final String APPLICATION_ID = "com.microsoft.onlineid.sdk";
+    public static final String BUILD_TYPE = "release";
+    public static final boolean DEBUG = false;
+    public static final String FLAVOR = "";
+    public static final boolean PSEUDO_LOC = false;
+    public static final int VERSION_CODE = -1;
+    public static final String VERSION_NAME = "";
+}
